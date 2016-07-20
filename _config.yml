@@ -86,7 +86,7 @@ theme: icarus
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/mengjues/mengjues.github.com.git
+  repo: git@github.com:mengjues/mengjues.github.io.git
 
 # Comment
 ## Disqus comment system
