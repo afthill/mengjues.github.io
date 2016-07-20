@@ -155,10 +155,11 @@ $ python -m dis knights.py
               3 STORE_NAME               0 (__doc__)
               6 LOAD_CONST               1 (None)
               9 RETURN_VALUE
-```                           
+```
+
 
 ```
-# knights.py                                                                 X
+# knights.py
 print("Ni!")
 def is_fresh_wound():
    return True
@@ -170,9 +171,10 @@ Ni!
 Disassembly of is_fresh_wound:
   3           0 LOAD_GLOBAL              0 (True)
               3 RETURN_VALUE
-```              
+```
 
 last traceback
+
 
 ```
 >>> print(spam)
