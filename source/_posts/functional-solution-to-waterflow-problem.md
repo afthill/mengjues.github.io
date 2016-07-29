@@ -12,9 +12,9 @@ categories:
 
 假设如下图（1），我们在不同的x轴的每一个点都有一个不同的y轴高度。
 
-![](http://philipnilsson.github.io/Badness10k/images/waterflow1.jpg)
-
-图1
+|![](http://philipnilsson.github.io/Badness10k/images/waterflow1.jpg)|
+|--------------------------------|
+|图1|
 
 该图可以用一个数组表示，然后数组里的每一个值表示的Y的高度，而数组的序列号（index）则表示为图中
 的X轴。
@@ -24,9 +24,9 @@ categories:
 现在假设从上面（Y轴）向下下雨（如图2），而且雨从来也不用考虑会停，那么上图在不同高度的Y轴之间最
 多可以收集多少雨水？
 
-![](http://philipnilsson.github.io/Badness10k/images/waterflow2.jpg)
-
-图2
+|![](http://philipnilsson.github.io/Badness10k/images/waterflow2.jpg)|
+|--------------------------------|
+|图2|
 
 另外，我们假设1升为（X轴的单位）X（Y轴的单位），即1x1为1升。现在如图2中，最左边的因为没有东西
 挡住，所以雨水会洒出，最右边的也是一样。
