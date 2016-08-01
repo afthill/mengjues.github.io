@@ -5,7 +5,7 @@ tags:
 - Mutex
 - Lock
 categories:
-- 并发
+- 内核
 ---
 
 ### Overview

@@ -5,7 +5,7 @@ tags:
 - GC
 - Destruction
 categories:
-- Python
+- 内核
 ---
 先看一个示例：
 

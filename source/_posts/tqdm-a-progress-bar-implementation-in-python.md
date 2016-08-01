@@ -1,10 +1,10 @@
-title: tqdm::一个命令行进度条的python实现
+title: "tqdm: 一个命令行进度条的python实现"
 date: 2015-12-24 12:02:49
 tags:
 - Python
 - Progress Bar
 categories:
-- 技术
+- 方案
 
 ---
 

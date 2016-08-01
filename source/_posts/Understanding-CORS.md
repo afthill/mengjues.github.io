@@ -6,7 +6,7 @@ tags:
 - Javascript
 - CORS
 categories:
-- 技术
+- 方案
 ---
 
 ### About CORS

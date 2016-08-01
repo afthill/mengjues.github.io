@@ -4,7 +4,7 @@ date: 2015-02-21 13:21
 tags:
 - GC
 categories:
-- Python
+- 推荐
 ---
 
 <http://mg.pov.lt/blog/hunting-python-memleaks.html>

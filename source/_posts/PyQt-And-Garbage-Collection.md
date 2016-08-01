@@ -4,7 +4,7 @@ date: 2015-04-28 17:55
 tags:
 - PyQt GC
 categories:
-- Python
+- 程序语言
 ---
 
 最近在写一个PyQt程序的时候，遇到一个奇怪的现象，slot或者process总是奇怪地消失了，但是调试信息里什么也不会提示，经过艰苦的

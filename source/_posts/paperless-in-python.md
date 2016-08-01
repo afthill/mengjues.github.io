@@ -3,7 +3,7 @@ date: 2016-01-18 12:40:50
 tags:
 - OCR
 categories:
-- Python
+- 程序语言
 
 ---
 

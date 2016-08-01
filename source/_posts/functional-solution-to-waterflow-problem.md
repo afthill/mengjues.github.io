@@ -3,7 +3,7 @@ date: 2016-07-29 17:18:00
 tags:
 - algo
 categories:
-- functional programming
+- 函数编程
 ---
 
 原文： <http://philipnilsson.github.io/Badness10k/posts/2013-10-11-functional-waterflow.html>

@@ -3,7 +3,7 @@ date: 2016-07-20 22:48:48
 tags:
 - ByteCode
 categories:
-- Python
+- 程序语言
 ---
 
 今天在europython 2016看到的一个好看的印度人的演讲，觉得很有意思，记录下来。

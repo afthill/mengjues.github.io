@@ -5,7 +5,7 @@ tags:
 - Pxe
 - Dual Boot
 categories:
-- Tech
+- 方案
 ---
 
 ### Install winPE

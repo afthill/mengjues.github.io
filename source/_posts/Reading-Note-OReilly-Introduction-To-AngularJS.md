@@ -4,7 +4,7 @@ date: 2015-11-27 13:25:00
 tags:
 - AngularJS
 categories:
-- 笔记
+- 程序语言
 ---
 
 ### AngularJS存在的意义

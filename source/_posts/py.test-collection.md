@@ -4,7 +4,7 @@ date: 2016-03-25 12:15
 tags:
 - Plugin Development
 categories:
-- Pytest
+- 测试
 ---
 
 https://pytest.org/latest/example/pythoncollection.html

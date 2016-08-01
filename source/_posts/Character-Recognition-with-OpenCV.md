@@ -3,7 +3,7 @@ date: 2016-01-26 10:58:57
 tags:
 - OpenCV
 categories:
-- 技术
+- 计算机视觉
 ---
 
 项目地址：<https://github.com/brakmic/OpenCV>

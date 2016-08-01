@@ -4,7 +4,7 @@ date: 2015-06-31 18:11
 tags:
 - Pexpect
 categories:
-- Python
+- 方案
 ---
 
 ### 1. The updated and latest pexpect

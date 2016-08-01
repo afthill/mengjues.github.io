@@ -1,10 +1,10 @@
-title: riko a new processor for stream of data
+title: "Riko: A new processor for stream of data"
 date: 2016-07-22 17:36:59
 tags:
 - Stream
 - Pipe
 categories:
-- Python
+- 程序语言
 ---
 
 > With riko, you can

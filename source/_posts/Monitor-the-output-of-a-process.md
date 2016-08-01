@@ -3,7 +3,7 @@ date: 2015-12-23 09:58:33
 tags:
 - Subprocess
 categories:
-- Python
+- 程序语言
 
 ---
 

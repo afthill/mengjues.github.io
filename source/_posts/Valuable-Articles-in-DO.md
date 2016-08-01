@@ -5,7 +5,7 @@ tags:
 - DO
 - 参考文章
 categories:
-- 技术
+- 方案
 
 ---
 

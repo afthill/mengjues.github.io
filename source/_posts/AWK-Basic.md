@@ -5,7 +5,7 @@ tags:
 - AWK
 - Text Processing
 categories:
-- 脚本
+- 程序语言
 ------
 
 ### About AWK

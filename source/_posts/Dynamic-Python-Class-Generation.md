@@ -3,7 +3,7 @@ date: 2016-07-29 01:20:32
 tags:
 - Python
 categories:
-- Dynamic Programming
+- 动态编程
 ---
 
 作者是Kyle Knapp，是Amazon的软件工程师。

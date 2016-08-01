@@ -4,7 +4,7 @@ date: 2016-05-28 12:15
 tags:
 - OpenCV
 categories:
-- Image Recognization
+- 计算机视觉
 ---
 
 

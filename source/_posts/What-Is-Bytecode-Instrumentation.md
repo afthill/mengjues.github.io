@@ -4,7 +4,7 @@ date: 2015-04-28 13:05
 tags:
 - ByteCode
 categories:
-- 技术
+- 内核
 ---
 
 ### Bytecode Instrumentation 定义

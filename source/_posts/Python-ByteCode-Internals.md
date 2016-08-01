@@ -4,7 +4,7 @@ date: 2015-04-22 17:22
 tags:
 - ByteCode
 categories:
-- Python
+- 内核
 ---
 
 ### First Look of bytecode

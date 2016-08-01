@@ -5,7 +5,7 @@ tags:
 - Gitlab
 - Nginx
 categories:
-- 技术
+- 方案
 ---
 
 有时候，我们使用gitlab官方提供的deb去安装时，gitlab使用了内嵌的nginx服务，使用

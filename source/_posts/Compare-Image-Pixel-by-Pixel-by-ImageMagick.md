@@ -3,7 +3,7 @@ date: 2016-07-09 12:33:04
 tags:
 - ImageMagick
 categories:
-- Image Recognization
+- 计算机视觉
 ---
 
 第一个方案： 把要去掉的部分，写进去一个矩阵里，然后再逐像素比较时，跳过原本要去掉的部分。

@@ -1,11 +1,11 @@
-title: joblib, the memoize and parallelism and persistence framework
+title: "Joblib: the memoize and parallelism and persistence framework"
 date: 2015-12-24 17:07:37
 tags:
 - Memoize
 - Parallelism
 - Persistence
 categories:
-- 技术
+- 方案
 
 ---
 

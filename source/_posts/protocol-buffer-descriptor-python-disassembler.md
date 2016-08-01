@@ -3,7 +3,7 @@ date: 2016-01-26 10:54:03
 tags:
 - Protocol Buffer Descriptor
 categories:
-- Persistence
+- 程序语言
 ---
 
 项目地址：<https://github.com/rsc-dev/pbd>

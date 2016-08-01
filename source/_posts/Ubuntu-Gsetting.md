@@ -4,7 +4,7 @@ date: 2016-06-25 11:15:28
 tags:
 - Gsettings
 categories:
-- Ubuntu
+- 方案
 ---
 
 Listing all window manager key bindings in sorted order:

@@ -5,7 +5,7 @@ tags:
 - Python
 - Tornado
 categories:
-- 技术
+- 程序语言
 ---
 
 ### Long Polling with tornado

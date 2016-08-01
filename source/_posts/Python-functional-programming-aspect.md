@@ -4,7 +4,7 @@ tags:
 - Python
 - Functional Programming
 categories:
-- 技术
+- 函数编程
 ---
 
 ### 名词解释

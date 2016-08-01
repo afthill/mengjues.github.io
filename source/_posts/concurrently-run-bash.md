@@ -3,7 +3,7 @@ date: 2016-01-25 10:31:24
 tags:
 - Bash
 categories:
-- Script
+- 方案
 ---
 
 项目地址：<https://github.com/themattrix/bash-concurrent>

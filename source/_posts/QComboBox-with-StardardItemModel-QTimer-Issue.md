@@ -4,7 +4,7 @@ date: 2015-06-01 12:46:00
 tags:
 - PyQt
 categories:
-- Python
+- 程序语言
 
 ---
 

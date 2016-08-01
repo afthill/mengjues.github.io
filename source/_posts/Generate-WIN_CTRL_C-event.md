@@ -6,7 +6,7 @@ tags:
 - PyQt
 - Qt
 categories:
-- Python
+- 方案
 ---
 
 

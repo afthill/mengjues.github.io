@@ -4,7 +4,7 @@ date: 2015-04-22 9:48
 tags:
 - Javascript
 categories:
-- 技术
+- 程序语言
 
 ---
 

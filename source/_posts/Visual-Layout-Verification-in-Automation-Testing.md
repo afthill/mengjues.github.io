@@ -4,7 +4,7 @@ date: 2015-10-1 11:15:28
 tags:
 - Visual Testing
 categories:
-- 技术
+- 测试
 ---
 
 | Name                 | Platform                | Programming Language |

@@ -1,11 +1,11 @@
 layout: post
-title: "map with None function"
+title: "Map with None function"
 date: 2015-08-03 15:39:28
 tags:
 - Map
 - Zip
 categories:
-- Python
+- 程序语言
 ---
 
 ### map函数的签名

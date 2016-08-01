@@ -4,7 +4,7 @@ date: 2015-05-12 10:52:28
 tags:
 - Meta Class
 categories:
-- Python
+- 程序语言
 ---
 
 ### About Meta Class

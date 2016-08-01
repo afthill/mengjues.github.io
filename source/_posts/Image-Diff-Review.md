@@ -3,7 +3,7 @@ date: 2016-08-01 11:24:28
 tags:
 - algo
 categories:
-- Tech
+- 评测
 ---
 
 |Name|Owner|Tech Stacks|Remarks|

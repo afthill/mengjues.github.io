@@ -3,7 +3,7 @@ date: 2016-01-04 09:43:55
 tags:
 - String Formatter
 categories:
-- Python
+- 程序语言
 
 ---
 

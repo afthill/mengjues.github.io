@@ -3,7 +3,7 @@ date: 2016-01-26 09:40:35
 tags:
 - JSON
 categories:
-- Fun
+- 好玩
 ---
 
 项目地址：<https://github.com/kragniz/json-sempai>

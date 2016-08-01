@@ -1,9 +1,9 @@
-title: remote run shell through python
+title: Remote run shell through python
 date: 2016-01-13 10:41:09
 tags:
 - Remote Shell
 categories:
-- Python
+- 程序语言
 
 ---
 

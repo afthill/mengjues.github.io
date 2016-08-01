@@ -4,7 +4,7 @@ date: 2016-05-25 12:15
 tags:
 - Serial Port
 categories:
-- Pexpect
+- 方案
 ---
 
 ### 1) pexpect

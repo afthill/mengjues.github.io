@@ -3,7 +3,7 @@ date: 2016-07-29 18:06:14
 tags:
 - Tech
 categories:
-- functional programming
+- 函数编程
 ---
 
 <https://github.com/hemanth/functional-programming-jargon>

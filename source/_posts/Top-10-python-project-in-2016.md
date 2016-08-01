@@ -3,7 +3,7 @@ date: 2016-08-01 16:21:41
 tags:
 - Fun
 categories:
-- Tech
+- 评测
 ---
 
 原文：<https://medium.com/@raiderrobert/top-10-python-projects-started-in-july-2016-9ae31f22e727#.nlvwlfakn>

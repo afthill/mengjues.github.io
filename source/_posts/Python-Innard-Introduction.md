@@ -5,7 +5,7 @@ tags:
 - CPython
 - Python Implementation
 categories:
-- Python
+- 内核
 
 ---
 

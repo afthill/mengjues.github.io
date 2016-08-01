@@ -3,7 +3,7 @@ date: 2016-01-25 10:37:16
 tags:
 - SSH
 categories:
-- Script
+- 方案
 ---
 
 项目地址：<https://github.com/ronf/asyncssh>
