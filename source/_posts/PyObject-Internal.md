@@ -7,3 +7,7 @@ categories:
 ---
 
 原文：<http://www.gahcep.com/python-internals-pyobject/>
+
+##### 参考
+
+- what is [opaque data type](http://stackoverflow.com/questions/3854113/what-is-an-opaque-value)
