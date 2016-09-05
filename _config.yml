@@ -66,6 +66,7 @@ category_map:
     测试: Testing
     评测: Review
     机器学习: MachineLearning
+    数学: Math
 tag_map:
     单元测试: Unit-Testing
     参考文章: Reference-Article
