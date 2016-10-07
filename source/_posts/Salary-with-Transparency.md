@@ -6,7 +6,7 @@ categories:
 - 好玩
 ---
 
-全公司的薪水都是透明可见？stackoverflow玩的貌似很溜（https://blog.stackoverflow.com/2016/10/international-salaries/）。但是这个东西在国内暂时似乎难以实现，大部分人对薪水很敏感，这其实内在的原因是：
+全公司的薪水都是透明可见？stackoverflow玩的貌似很溜（`https://blog.stackoverflow.com/2016/10/international-salaries/`）。但是这个东西在国内暂时似乎难以实现，大部分人对薪水很敏感，这其实内在的原因是：
 
 - 一，大量的失去竞争能力的人混在公司高薪低能，导致他们不原因公开；
 - 二，HR在制定薪酬政策没有统一和自信的标准，导致具有更高谈判技巧的人获得更好的薪水；
