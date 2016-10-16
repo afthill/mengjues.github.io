@@ -5,7 +5,7 @@ tags:
 - Recommend
 - Image Processing
 categories:
-- Python
+- 计算机视觉
 ---
 
 原文[链接](https://mzucker.github.io/2016/09/20/noteshrink.html)，作者：Matt Zucker

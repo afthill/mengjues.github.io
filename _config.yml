@@ -57,7 +57,7 @@ category_map:
     脚本: Script
     数据库: Database
     动态编程: Dynamic-Programming
-    函数编程: Dynamic-Programming
+    函数编程: Functional-Programming
     计算机视觉: ComputerVision
     内核: Innards
     面试: Interview

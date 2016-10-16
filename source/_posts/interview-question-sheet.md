@@ -1,7 +1,5 @@
-title: interview question sheet
+title: Interview question sheet
 date: 2016-01-18 13:24:48
-tags:
-- Sheet
 categories:
 - 面试
 
