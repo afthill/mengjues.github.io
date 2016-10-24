@@ -23,6 +23,7 @@ return [0, 1].
 ### Resolution:
 
 我开始用到的暴力破解法：
+
 ```
 class Solution(object):
     def twoSum(self, nums, target):
@@ -39,11 +40,11 @@ class Solution(object):
         return None
 ```        
 
-时间复杂度：O(N^2)，空间复杂度为：O(1)
+时间复杂度：`O(N^2)`，空间复杂度为：`O(1)`
 
 ### Discuss
 
-看了方案，有一个更好的利用额外的一个字典存储已经遍历的值，做到一次遍历就可以求到解，这里使用的技巧是字典的查询操作是O（1）的，用来代替我上面为了找到第二个值的O（N）遍历，很巧妙，想法很好。不过这套方案，空间复杂度是O（N），用空间优化了时间，很棒。
+看了方案，有一个更好的利用额外的一个字典存储已经遍历的值，做到一次遍历就可以求到解，这里使用的技巧是字典的查询操作是`O（1）`的，用来代替我上面为了找到第二个值的`O（N）`遍历，很巧妙，想法很好。不过这套方案，空间复杂度是`O（N）`，用空间优化了时间，很棒。
 
 ```
 class Solution(object):
@@ -59,4 +60,4 @@ class Solution(object):
                 return [number_dict[target-value] , index]
             number_dict[value] = index
         return [-1, -1]
-```        
+```
