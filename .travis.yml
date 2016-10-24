@@ -1,0 +1,9 @@
+language: node_js
+branches:
+  only:
+  - beta
+before_install:
+- npm install -g hexo
+- npm install
+install:
+- hexo generate
