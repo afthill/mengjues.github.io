@@ -3,7 +3,7 @@ date: 2016-10-24 13:58:28
 tags:
 - JavaScript
 categories:
-- 编程语言
+- 程序语言
 ---
 
 今天在查阅[MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)的时候，看到一个ES6对arrow function的定义：
