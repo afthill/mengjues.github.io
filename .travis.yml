@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - "5"
+branches:
+  only:
+  - beta
+before_install:
+- npm install
+before_script:
+- git config --global user.name 'MengJueM'
+- git config --global user.email 'mengjue@outlook.com'
+- sed -i'' "s~git@github.com:mengjues/mengjues.github.io.git~https://${GH_TOKEN}:x-oauth-basic@github.com/mengjues/mengjues.github.io.git~" _config.yml
+install:
+- npm run generate
+script:
+- npm run deploy
+env:
+  global:
+    secure: RQrAOCkJqZ6q9SfLUA9O8VRBgrpPs1xyLif7BWf9lDREgAtMej2kYp2G6AdClA1UtaKQSPX0UIgUgnsDfpzeXTLLR15HqoIOBVa8e5a/R0BNOL0/vySKwi8ecBzl9u9mP2nPCSQJ3NQ2WW8RaZjaMag/ICRcAVJyG6cTu3qMFZ+gUiDwBdIlBwnp2fLEVgNVFtsXsqHU26lhW4cNt1n3X929yjVRzfLlKLjp3x74veiHzQRcAse5kysqMWGDir9Xeb4LSXMEXpNLj2PMiVjlQvmfM6P39bEfvyTBuODScgR8LPOvQsJVxYZhauvCbalv7DqDaXH3hB2qQ4788sbS1ynCpM0hrvAAdNMm1pTqG4MkLMx15cBRA9bMOdujTITNj1LkWNhGmGHNWXjh/TQHaWWaKtMkj3YGM7SM6FpbXzmZ7fhkfqJUm/Xg1xddTk46NverkSbLCkuyzkkFFJOKkGQEuEXMFFCpvrq6Hkj7JMYM2kD6Pf08Skj5h4DEHHfyDiQt8TQzF4NpkdD6PV+j0YYnAaUlGPsiVd0/DN6Ve3l0dSkjLMifEi9kPY1Tk8s3LJH06BMyGIqAkpQ4YsS/ytaeLBqJphn6gEG3PaMKSy3doziBpwp/XaOjk7dSIIV0/7QyYA77mCBEvryonkXqiF9NByggS1z3QYcIn+H4prE=
