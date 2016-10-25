@@ -38,7 +38,7 @@ class Solution(object):
                     return [i, i + j + 1]
                     
         return None
-```        
+```
 
 时间复杂度：`O(N^2)`，空间复杂度为：`O(1)`
 
