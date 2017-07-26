@@ -75,6 +75,8 @@ tag_map:
     同步: Synchronize
     并发: Concurrency
     安全: Security
+    好玩: Fun
+    测试: Test
 
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
