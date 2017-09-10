@@ -1,4 +1,4 @@
-title: Linux Load Averages: Solving the Mystery!
+title: "Linux Load Averages: Solving the Mystery!"
 date: 2017-09-11
 tags:
 - Linux
