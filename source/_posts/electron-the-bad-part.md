@@ -1,5 +1,5 @@
 title: "Electron: the bad part"
-date: 2016-09-20
+date: 2017-09-20
 tags:
 - Electron
 categories:
