@@ -1,5 +1,7 @@
 title: "Concurrency vs Parallelism"
 date: 2017-10-09
+categories:
+- 内核
 ---
 
 看到一篇[文章](https://hackernoon.com/the-beauty-of-go-98057e3f0a7d)
