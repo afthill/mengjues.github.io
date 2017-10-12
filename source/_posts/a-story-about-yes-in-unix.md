@@ -1,4 +1,4 @@
-title "一个好玩的关于unix中一个非常简单的工具yes的优化实现"
+title: "一个好玩的关于unix中一个非常简单的工具yes的优化实现"
 date: 2017-10-12
 categories:
 - 内核
