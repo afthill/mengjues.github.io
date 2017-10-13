@@ -4,6 +4,8 @@ categories:
 - 内核
 ---
 
+源：<https://medium.com/@tylerneely/fear-and-loathing-in-lock-free-programming-7158b1cdd50c>
+
 **About CAS/TAS:**
 
 Several of the most popular CPU architectures have instructions that let you atomically set memory to a new value conditionally if you know the current value. This is called “test and set” (TAS), “compare and swap”, or “compare and set” (CAS). The hardware makes sure that only one thread “wins” if several threads attempt a CAS at the same time. All others are unsuccessful. The return value varies across implementations, but a good implementation clearly indicates success or failure.
