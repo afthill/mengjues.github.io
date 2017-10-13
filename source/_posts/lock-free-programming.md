@@ -67,4 +67,95 @@ A Treiber stack will be our first true lock-free structure! It looks a lot like 
 2. Read the current stack.head and set our node.next to it.
 3. CAS the stack’s head from the head to our new node. If it worked, we’re done! If not, GOTO 2.
  
- 
+Popping the stack is similar:
+1. Read the current stack.head. If it’s not set, either retry or return nothing depending on if you have blocking or non-blocking semantics. The example below is non-blocking, and returns nothing.
+2. If head is set, we try to pop it. Try to CAS the stack’s headto its head.nextvalue. If it worked, return the now-severed head! Otherwise GOTO 1.
+
+```
+import java.util.concurrent.atomic.*;
+import net.jcpip.annotations.*;
+
+@ThreadSafe
+public class ConcurrentStack <E> {
+  AtomicReference<Node<E>> top = new AtomicReference<Node<E>>();
+  
+  public void push(E item) {
+    Node<E> newHead = new Node<E>(item);
+    Node<E> oldHead;
+    do {
+      oldHead = top.get();
+      newHead.next = oldHead;
+    } while (!top.compareAndSet(oldHead, newHead));
+  }
+  
+  public E pop() {
+    Node<E> oldHead;
+    Node<E> newHead;
+    do {
+      oldHead = top.get();
+      if (oldHead == null) {
+        return null;
+      }
+      newHead = oldHead.next;
+    } while (!top.compareAndSet(oldHead, newHead));
+    
+    return oldHead.item;
+  }
+  
+  private static class Node<E> {
+    public final E item;
+    public Node<E> next;
+    
+    public Node(E item) {
+      this.item = item;
+    }
+    
+  }
+}
+```
+
+这里实现的lock free方案使用了spinlock，如果开了太多线程，大部分在spinlock里的`compareAndSet`操作将会空转，导致效率低下。
+
+**About wait-free**
+
+Wait-free algorithms, a subset of lock-free algorithms, guarantee bounded time execution. If your algorithm involves atomic variables and a bounded number of steps, you‘ve got a wait-free algorithm on your hands!
+
+Wait free的两种使用场景：
+* 限定的执行步数：The use of a constant number of instructions (1 in the case of incrementing or decrementing an atomic reference counter) is actually an example of a particularly strong type of wait-freedom known as “wait-free population oblivious” where the number of steps we take in our code is not dependent on the number of threads participating.
+* 限定的执行线程数：Other wait-free algorithms sometimes work by trying to complete the work of a bounded number of other threads, and that bound could grow or shrink as the number of participating threads changes.
+
+**Lock free vs Wait free**
+
+In the last few years, folks have found a nice balance between usually-fast lock-free and reliable wait-free algorithms by attempting the lock-free version at first, and falling back to the wait-free version if it doesn’t pan out. This reminds me of the compromise found in modern hybrid mutexes to improve the flexibility of the implementation.
+
+**About Copy-on-Write**
+
+A technique sometimes used in databases and filesystems is shadow paging. Sometimes we want to atomically update multiple items stored in a tree structure. The basic idea is:
+1. read the pointer to the root
+2. copy the things we want to change into new tree nodes, then go up the tree creating new (copied) nodes that reference the previous copied and changed level, going up the tree until we reach the root. All of this is done without changing the original tree.
+3. Finally, we CAS the root to point to our changed pages.
+4. if the CAS worked, our multi-item transaction was successful. if not, we either retry or propagate an error to the next higher level of our system.
+
+COW经常会被使用在lock free系统里，但是大部分时间仔细调优的（fine grained）Read-Write-Lock是一个更好的方案。
+
+**Lock free中会出现的问题：ABA**
+
+The ABA Problem
+
+```
+5 == 5 — 1 + 1
+```
+
+One may assume “if our CAS succeeded, nothing has happened since we read the old value”. This is only true for monotonic values like a counter that you only increment. But if you can increment AND decrement the counter, all hell breaks loose. If a non-monotonic value was 17 one minute ago and it’s 17 now, there may have been a bunch of random increments and decrements in the interlude.
+
+**ABA and Pointers**
+
+Pointers are not monotonic!!! Our memory allocators often will put a new memory family in the same memory house when the old one moves away to memory heaven (or memory hell if they were bad and spent their lives writing lock-free algorithms).
+
+也就是说，内存分配器会在内存优化时记忆前一次的位置，导致被释放的内存地址里的数据的状态已经失效而在CAS却不自知。
+
+**Other issues**
+
+* Memory model and memory barrier.
+* compile reorder and optimization.
+* compile inline.
