@@ -1,6 +1,6 @@
 title: "一个好玩的画终端像素动画的软件：drawille"
 date: 2017-10-25
-categoreis:
+categories:
 - 推荐
 ---
 
