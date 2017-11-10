@@ -49,3 +49,5 @@ One of the common tricks we have seen being used in the past is to emulate a loc
 - Basically a strongly consistent datastore that is replicated, hihgly available and durable can be used to persist the information on who is holding it, for how long etc.
 - failure detection issue:
   - Traditional lock service also provides a simple library that the clients can use to heartbeat with the service.
+  
+Reference: <https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html>
