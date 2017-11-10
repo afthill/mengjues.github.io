@@ -31,3 +31,21 @@ Phase II: make decision and report issue
   - not good idea for obvious reason of availability or durability;
 - a system that implements a concensus algorithum like Paxos;
 - build a form of lead election on top of a strongly consistent datastore;
+
+***What is Paxos***
+Paxos is the gold standard in concensus algorithum which is the concensus protocol designed to reach an agreement across a family of unreliable distributed processes. 
+
+***How can I use Paxos algorithum to solve the problem of coordination?****
+- **Build a concensus library**: this is a library that implements Paxos that application can consume.
+  - elect a leader to execute a workflow is passed as a transaction into the library;
+- **Lock service**: Lock service is a form of concensus service that converts the problem of reaching concensus to handing out locks.
+  - Basically a distributed set of processes compete to acquire a lock and whoever gets the lock has the "baton" to execute a workflow.
+  - Google: chubby;
+  - Zookeeper;
+  
+***Using a strongly consistent datastore to build lock service***
+
+One of the common tricks we have seen being used in the past is to emulate a lock service behaviour using a strongly consistent datastore.
+- Basically a strongly consistent datastore that is replicated, hihgly available and durable can be used to persist the information on who is holding it, for how long etc.
+- failure detection issue:
+  - Traditional lock service also provides a simple library that the clients can use to heartbeat with the service.
