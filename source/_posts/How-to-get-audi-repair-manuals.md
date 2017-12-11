@@ -4,8 +4,7 @@ categories:
 - 推荐
 ------
 
-这个文章很有用：<https://www.audiworld.com/forums/a6-s6-c6-platform-discussion-58/diy-center-console-removal-2832795/>，里面提到一个软件
-叫elsawin会记录很多汽车相关的维修资料。
+这个文章很有用：<https://www.audiworld.com/forums/a6-s6-c6-platform-discussion-58/diy-center-console-removal-2832795/>，里面提到一个软件叫elsawin会记录很多汽车相关的维修资料。
 
 ***参考：***
 1. <http://careucarobd2.ivoire-blog.com/archive/2017/04/21/2017-elsawin-6-0-download-free-with-elsawin-user-guide-471168.html>
