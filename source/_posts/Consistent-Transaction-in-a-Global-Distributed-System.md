@@ -1,4 +1,4 @@
-title: ""
+title: "Consistent Transaction In a Globally Distributed Database"
 date: 2017-11-15
 categories:
 - 推荐
