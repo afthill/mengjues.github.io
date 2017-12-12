@@ -105,7 +105,7 @@ deploy:
 
 # Comment
 ## Disqus comment system
-disqus_shortname: stuart21st
+#disqus_shortname: stuart21st
 
 # Site
 # author: Meng Jue M
