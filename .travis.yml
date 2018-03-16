@@ -7,7 +7,7 @@ branches:
 before_install:
 - npm install
 - echo $PATH
-- pwd
+- ls -al ./node_modules/.bin/hexo
 before_script:
 - git config --global user.name 'MengJueM'
 - git config --global user.email 'mengjue@outlook.com'
