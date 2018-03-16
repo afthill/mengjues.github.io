@@ -6,6 +6,8 @@ branches:
   - beta
 before_install:
 - npm install
+- echo $PATH
+- pwd
 before_script:
 - git config --global user.name 'MengJueM'
 - git config --global user.email 'mengjue@outlook.com'
