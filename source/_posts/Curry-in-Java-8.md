@@ -3,7 +3,7 @@ date: 2016-11-05 00:24:26
 tags:
 - Curry
 categories:
-- 函数式编程
+- 函数编程
 ---
 
 **Currying**
