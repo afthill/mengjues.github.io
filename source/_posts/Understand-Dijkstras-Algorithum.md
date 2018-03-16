@@ -1,4 +1,4 @@
-title: "Understanding Dijkstra's Algorithm
+title: "Understanding Dijkstra's Algorithm"
 date: 2018-02-26
 categories:
 - 算法
