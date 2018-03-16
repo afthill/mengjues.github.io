@@ -3,7 +3,7 @@ date: 2016-12-26 00:11:43
 tags:
 - Python
 categories:
-- 函数式编程
+- 函数编程
 ---
 
 原文：https://maryrosecook.com/blog/post/a-practical-introduction-to-functional-programming
