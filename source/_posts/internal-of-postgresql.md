@@ -5,3 +5,5 @@ categories:
 ---
 
 <http://www.interdb.jp/pg/index.html>
+
+博客也非常赞：https://news.ycombinator.com/item?id=18950460
