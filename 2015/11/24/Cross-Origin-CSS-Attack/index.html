@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>CSS跨站攻击原理与防护 | Make Fun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="参考：https://www.linshunghuang.com/papers/css.pdf 基础知识 一个展示在用户面前的页面是由多个不同内部的文档片段组成的：  Script CSS IMG   浏览器的基本功能：  浏览器是用来渲染（Render）页面的 浏览器解析首页的HTML后，根据需要拉取所需的页面片段 浏览器负责图片展示 浏览器负责拉取script 浏览器负责执行script">
+<meta name="keywords" content="CSS Attack,CSRF">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS跨站攻击原理与防护">
+<meta property="og:url" content="http://m.imf.cc/2015/11/24/Cross-Origin-CSS-Attack/index.html">
+<meta property="og:site_name" content="Make Fun">
+<meta property="og:description" content="参考：https://www.linshunghuang.com/papers/css.pdf 基础知识 一个展示在用户面前的页面是由多个不同内部的文档片段组成的：  Script CSS IMG   浏览器的基本功能：  浏览器是用来渲染（Render）页面的 浏览器解析首页的HTML后，根据需要拉取所需的页面片段 浏览器负责图片展示 浏览器负责拉取script 浏览器负责执行script">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-31T01:39:44.272Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS跨站攻击原理与防护">
+<meta name="twitter:description" content="参考：https://www.linshunghuang.com/papers/css.pdf 基础知识 一个展示在用户面前的页面是由多个不同内部的文档片段组成的：  Script CSS IMG   浏览器的基本功能：  浏览器是用来渲染（Render）页面的 浏览器解析首页的HTML后，根据需要拉取所需的页面片段 浏览器负责图片展示 浏览器负责拉取script 浏览器负责执行script">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/open-fonts/css/open-sans.css">
+  <link rel="stylesheet" href="/open-fonts/css/share-tech-mono.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><i class="logo"></i><span class="site-title">Make Fun</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div class="profile" id="profile-nav">
+          <a id="profile-anchor" href="javascript:;"><img class="avatar" src="/css/images/avatar.png"><i class="fa fa-caret-down"></i></a>
+        </div>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+      
+        <td><a class="main-nav-link" href="/">Home</a></td>
+      
+        <td><a class="main-nav-link" href="/archives">Archives</a></td>
+      
+        <td><a class="main-nav-link" href="/about">About</a></td>
+      
+      <td>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </td>
+      </tr>
+    </table>
+  </div>
+  
+</header>
+    <div class="outer">
+      <aside id="profile">
+  <div class="inner profile-inner">
+  	<div class="base-info profile-block">
+		  <img id="avatar" src="/css/images/avatar.png">
+      <h2 id="name">Meng Jue (M)</h2>
+      <h3 id="title">Strict Developer &amp; Funny Player</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Shanghai, China</span>
+      <a id="follow" href="https://github.com/MengjueM">关注我</a>
+  	</div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        319
+        <span>文章</span>
+      </div>
+      <div class="article-info-block">
+        236
+        <span>标签</span>
+      </div>
+    </div>
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+        
+          <td><a href="http://github.com/MengjueM" title="github"><i class="fa fa-github"></i></a></td>
+        
+          <td><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></td>
+        
+          <td><a href="#" title="facebook"><i class="fa fa-facebook"></i></a></td>
+        
+          <td><a href="#" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
+        
+          <td><a href="/atom.xml" title="rss"><i class="fa fa-rss"></i></a></td>
+        
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+      <section id="main"><article id="post-Cross-Origin-CSS-Attack" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      CSS跨站攻击原理与防护
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/11/24/Cross-Origin-CSS-Attack/">
+    <time datetime="2015-11-24T09:25:00.000Z" itemprop="datePublished">2015-11-24</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Security/">安全</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><p><a href="https://www.linshunghuang.com/papers/css.pdf" target="_blank" rel="noopener">https://www.linshunghuang.com/papers/css.pdf</a></p>
+<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><ol>
+<li><p>一个展示在用户面前的页面是由多个不同内部的文档片段组成的：</p>
+<ul>
+<li>Script</li>
+<li>CSS</li>
+<li>IMG</li>
+</ul>
+</li>
+<li><p>浏览器的基本功能：</p>
+<ul>
+<li>浏览器是用来渲染（Render）页面的</li>
+<li>浏览器解析首页的HTML后，根据需要拉取所需的页面片段</li>
+<li>浏览器负责图片展示</li>
+<li>浏览器负责拉取script</li>
+<li>浏览器负责执行script</li>
+</ul>
+</li>
+<li><p>浏览器的安全措施：</p>
+<ul>
+<li>浏览器在沙盒之中运行script</li>
+<li>浏览器限制script有限访问本地计算机资源</li>
+<li>浏览器限制script有限访问本地环境信息</li>
+<li>浏览器通过同源策略控制script访问从网络上拉取的内容<ul>
+<li>比如不能访问和操作不同源（Cross Origin）的图片</li>
+<li>比如不能访问和操作不同源（Cross Origin）的CSS</li>
+<li>比如不能访问和操作不同源（Cross Origin）的Cookie</li>
+<li>比如不能访问和操作不同源的API（如果要访问，需要API支持CORS）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="CSS入门"><a href="#CSS入门" class="headerlink" title="CSS入门"></a>CSS入门</h3><ol>
+<li><p>CSS（Cascading stylesheet）是W3C标准化的一种文档类型，用来定义HTML静态页面的外观（Appearance），而<br>Javascript一般默认用来定义静态页面的行为（Behaviour）</p>
+</li>
+<li><p>为了以后的扩展的考虑，CSS规范强制要求了对CSS的解析采用error-tolerant。</p>
+<ul>
+<li>浏览器不能解析CSS时会自动跳过CSS Directive（指令）</li>
+<li>浏览器会继续执行后面可以理解的部分（directive）</li>
+<li>设计师对这种规则的利用包括：<ul>
+<li>在最新的页面中使用最新的CSS技术</li>
+<li>如果旧的浏览器不能识别这种新的css directive，将会自动忽略（gracefully degrade）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>CSS解析系统存在的漏洞</p>
+<ul>
+<li>从CSS文档传进来的内容不一定全部都是合法的css directive， 比如有可能是一个HTML文档</li>
+<li>从CSS文档传进来的非法的内容也有可能被CSS Interpreter尝试解析<ul>
+<li>CSS文档里的内容可能是有害的脚本，会窃取宿主页面所包含的敏感信息</li>
+<li>某些宿主的页面可能需要登陆才能展示，但是隐藏在CSS中的有害的脚本可能会立即获得敏感信息即使在没有登录的前提下<ul>
+<li>原因是这些页面在发起request时，已经在cookie中携带了敏感信息</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h3><ul>
+<li>首先这是一个CSS Specification的bug，因为ERROR-Tolarant Parsing的要求，导致解析器必须能够处理不能识别的css directive</li>
+<li>解析器允许一个从外部导入的文档（CSS）去覆盖（Override）一个跨源文档内的内容<ul>
+<li>解析器应该在上下文中要求安全的跨源确认之后再去处理CSS</li>
+</ul>
+</li>
+</ul>
+<h3 id="安全防护"><a href="#安全防护" class="headerlink" title="安全防护"></a>安全防护</h3><ul>
+<li>使用更加严厉的跨源内容处理规则<ul>
+<li>被firefox，chrome，opera采用</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>To be continued</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/11/24/Cross-Origin-CSS-Attack/" data-id="cjrjycryo00y4bati9m5xkka5" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSRF/">CSRF</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS-Attack/">CSS Attack</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/11/27/Reading-Note-OReilly-Introduction-To-AngularJS/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          阅读笔记：OReilly 《AngularJS: up and running》
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/01/Visual-Layout-Verification-in-Automation-Testing/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Visual Layout Verification in Automation Testing</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Innards/">内核</a><span class="category-list-count">48</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">函数编程</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dynamic-Programming/">动态编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Fun/">好玩</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">安全</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">安卓</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Recommend/">推荐</a><span class="category-list-count">57</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">数学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Solutions/">方案</a><span class="category-list-count">64</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">机器学习</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">程序语言</a><span class="category-list-count">71</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Notes/">笔记</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algo/">算法</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Automation/">自动化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerVision/">计算机视觉</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Review/">评测</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">面试</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">49</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Meng Jue (M)<br>
+    </div>
+  </div>
+</footer>
+
+    
+
+
+
+<script src="/js/jquery-2.2.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

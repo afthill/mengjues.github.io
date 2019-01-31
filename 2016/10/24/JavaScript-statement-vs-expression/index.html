@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>JavaScript: statement vs expression | Make Fun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天在查阅MDN的时候，看到一个ES6对arrow function的定义：  &amp;gt; (param1, param2, …, paramN) =&amp;gt; &amp;#123; statements &amp;#125;&amp;gt; (param1, param2, …, paramN) =&amp;gt; expression&amp;gt;          // equivalent to:  =&amp;gt; &amp;#123; re">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript: statement vs expression">
+<meta property="og:url" content="http://m.imf.cc/2016/10/24/JavaScript-statement-vs-expression/index.html">
+<meta property="og:site_name" content="Make Fun">
+<meta property="og:description" content="今天在查阅MDN的时候，看到一个ES6对arrow function的定义：  &amp;gt; (param1, param2, …, paramN) =&amp;gt; &amp;#123; statements &amp;#125;&amp;gt; (param1, param2, …, paramN) =&amp;gt; expression&amp;gt;          // equivalent to:  =&amp;gt; &amp;#123; re">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-31T01:39:44.272Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript: statement vs expression">
+<meta name="twitter:description" content="今天在查阅MDN的时候，看到一个ES6对arrow function的定义：  &amp;gt; (param1, param2, …, paramN) =&amp;gt; &amp;#123; statements &amp;#125;&amp;gt; (param1, param2, …, paramN) =&amp;gt; expression&amp;gt;          // equivalent to:  =&amp;gt; &amp;#123; re">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/open-fonts/css/open-sans.css">
+  <link rel="stylesheet" href="/open-fonts/css/share-tech-mono.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><i class="logo"></i><span class="site-title">Make Fun</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div class="profile" id="profile-nav">
+          <a id="profile-anchor" href="javascript:;"><img class="avatar" src="/css/images/avatar.png"><i class="fa fa-caret-down"></i></a>
+        </div>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+      
+        <td><a class="main-nav-link" href="/">Home</a></td>
+      
+        <td><a class="main-nav-link" href="/archives">Archives</a></td>
+      
+        <td><a class="main-nav-link" href="/about">About</a></td>
+      
+      <td>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </td>
+      </tr>
+    </table>
+  </div>
+  
+</header>
+    <div class="outer">
+      <aside id="profile">
+  <div class="inner profile-inner">
+  	<div class="base-info profile-block">
+		  <img id="avatar" src="/css/images/avatar.png">
+      <h2 id="name">Meng Jue (M)</h2>
+      <h3 id="title">Strict Developer &amp; Funny Player</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Shanghai, China</span>
+      <a id="follow" href="https://github.com/MengjueM">关注我</a>
+  	</div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        319
+        <span>文章</span>
+      </div>
+      <div class="article-info-block">
+        236
+        <span>标签</span>
+      </div>
+    </div>
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+        
+          <td><a href="http://github.com/MengjueM" title="github"><i class="fa fa-github"></i></a></td>
+        
+          <td><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></td>
+        
+          <td><a href="#" title="facebook"><i class="fa fa-facebook"></i></a></td>
+        
+          <td><a href="#" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
+        
+          <td><a href="/atom.xml" title="rss"><i class="fa fa-rss"></i></a></td>
+        
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+      <section id="main"><article id="post-JavaScript-statement-vs-expression" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript: statement vs expression
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2016/10/24/JavaScript-statement-vs-expression/">
+    <time datetime="2016-10-24T05:58:28.000Z" itemprop="datePublished">2016-10-24</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Coding/">程序语言</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天在查阅<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="noopener">MDN</a>的时候，看到一个ES6对arrow function的定义：</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt; (param1, param2, …, paramN) =&gt; &#123; statements &#125;</span><br><span class="line">&gt; (param1, param2, …, paramN) =&gt; expression</span><br><span class="line">&gt;          // equivalent to:  =&gt; &#123; return expression; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>对于expression的认识很模糊，我们常常在写常见的function的时候，似乎对expression<br>和statement的概念区分的不是很明显。比如这里是expression：</p>
+<ul>
+<li><code>3 + 4</code></li>
+<li><code>foo(7)</code></li>
+<li><code>&#39;abc&#39;.length</code></li>
+</ul>
+<p>而如果给他们加上分号（实际上没有分号也可以）或者放进函数体内就变成了statement：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function bar() &#123;</span><br><span class="line">  3 + 4;</span><br><span class="line">  foo(7);</span><br><span class="line">  &apos;abc&apos;.length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那么到底什么是expression？什么是satement？他们区别是什么？</p>
+<h3 id="expression定义"><a href="#expression定义" class="headerlink" title="expression定义"></a>expression定义</h3><p>expression可以生产（produce）数据，这个生产的过程是通过evaluation。也就是说<br>数据没有马上产生，是需要时才会被evaluated。</p>
+<h3 id="statement定义"><a href="#statement定义" class="headerlink" title="statement定义"></a>statement定义</h3><p>statement是用来做事情（do things）。这里的数据会马上产生，直到最终的结果才算<br>当前的statement被执行完毕。</p>
+<h3 id="expression与statement的区别"><a href="#expression与statement的区别" class="headerlink" title="expression与statement的区别"></a>expression与statement的区别</h3><p>大部分expression可以被用作statement，只需要把他们放在statement的位置即可，比如<br>statement最常出现的位置就是函数体内（function body），如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function bar() &#123;</span><br><span class="line">  3 + 4;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的expression<code>3+4</code>因为处于函数体内，被当成了statement。</p>
+<h3 id="例外"><a href="#例外" class="headerlink" title="例外"></a>例外</h3><p>这里是一个function body（block）：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const f = x =&gt; &#123;bar: 123&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>而这里是一个expression，返回了object literal：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const f = x =&gt; (&#123;bar: 123&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="另外一个区别"><a href="#另外一个区别" class="headerlink" title="另外一个区别"></a>另外一个区别</h3><p>如果一个expression被当成了function body，那么不需要大括号：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">asyncFunc.then(x =&gt; console.log(x));</span><br></pre></td></tr></table></figure></p>
+<p>如果是statement，则需要：<br><code>`</code><br>asyncFunc.then(x =&gt; {throw x});</p>
+<h3 id="简单总结"><a href="#简单总结" class="headerlink" title="简单总结"></a>简单总结</h3><p>expression一般是放在小括号里的<code>(expression)</code>，而statement一般是放在大括号里的<code>{statement}</code>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2016/10/24/JavaScript-statement-vs-expression/" data-id="cjrjycrnh00b2bati7f6fpqka" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/10/24/SMP-multi-thread-and-synchronisation-explained/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          SMP: multi-thread and synchronisation explained
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/16/Git-tutorial-with-real-example/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Git tutorial with real example</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Innards/">内核</a><span class="category-list-count">48</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">函数编程</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dynamic-Programming/">动态编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Fun/">好玩</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">安全</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">安卓</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Recommend/">推荐</a><span class="category-list-count">57</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">数学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Solutions/">方案</a><span class="category-list-count">64</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">机器学习</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">程序语言</a><span class="category-list-count">71</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Notes/">笔记</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algo/">算法</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Automation/">自动化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerVision/">计算机视觉</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Review/">评测</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">面试</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">49</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Meng Jue (M)<br>
+    </div>
+  </div>
+</footer>
+
+    
+
+
+
+<script src="/js/jquery-2.2.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

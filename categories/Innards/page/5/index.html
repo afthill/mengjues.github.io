@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Category: 内核 | Make Fun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Make fun with the world">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Make Fun">
+<meta property="og:url" content="http://m.imf.cc/categories/Innards/page/5/index.html">
+<meta property="og:site_name" content="Make Fun">
+<meta property="og:description" content="Make fun with the world">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Make Fun">
+<meta name="twitter:description" content="Make fun with the world">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/open-fonts/css/open-sans.css">
+  <link rel="stylesheet" href="/open-fonts/css/share-tech-mono.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><i class="logo"></i><span class="site-title">Make Fun</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div class="profile" id="profile-nav">
+          <a id="profile-anchor" href="javascript:;"><img class="avatar" src="/css/images/avatar.png"><i class="fa fa-caret-down"></i></a>
+        </div>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+      
+        <td><a class="main-nav-link" href="/">Home</a></td>
+      
+        <td><a class="main-nav-link" href="/archives">Archives</a></td>
+      
+        <td><a class="main-nav-link" href="/about">About</a></td>
+      
+      <td>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </td>
+      </tr>
+    </table>
+  </div>
+  
+  <div id="header-sub" class="header-sub header-inner">
+    <div class="outer">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Innards/">内核</a><span class="category-list-count">48</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">函数编程</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dynamic-Programming/">动态编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Fun/">好玩</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">安全</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">安卓</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Recommend/">推荐</a><span class="category-list-count">57</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">数学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Solutions/">方案</a><span class="category-list-count">64</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">机器学习</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">程序语言</a><span class="category-list-count">71</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Notes/">笔记</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algo/">算法</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Automation/">自动化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerVision/">计算机视觉</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Review/">评测</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">面试</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+  
+</header>
+    <div class="outer">
+      <aside id="profile">
+  <div class="inner profile-inner">
+  	<div class="base-info profile-block">
+		  <img id="avatar" src="/css/images/avatar.png">
+      <h2 id="name">Meng Jue (M)</h2>
+      <h3 id="title">Strict Developer &amp; Funny Player</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Shanghai, China</span>
+      <a id="follow" href="https://github.com/MengjueM">关注我</a>
+  	</div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        319
+        <span>文章</span>
+      </div>
+      <div class="article-info-block">
+        236
+        <span>标签</span>
+      </div>
+    </div>
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+        
+          <td><a href="http://github.com/MengjueM" title="github"><i class="fa fa-github"></i></a></td>
+        
+          <td><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></td>
+        
+          <td><a href="#" title="facebook"><i class="fa fa-facebook"></i></a></td>
+        
+          <td><a href="#" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
+        
+          <td><a href="/atom.xml" title="rss"><i class="fa fa-rss"></i></a></td>
+        
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+      <section id="main">
+  
+  
+    
+    
+      
+        <div class="archive-year-wrap">
+          <i class="fa fa-calendar"></i>
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+    
+    <article id="post-SMP-multi-thread-and-synchronisation-explained" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/24/SMP-multi-thread-and-synchronisation-explained/">SMP: multi-thread and synchronisation explained</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2016/10/24/SMP-multi-thread-and-synchronisation-explained/">
+    <time datetime="2016-10-24T08:34:51.000Z" itemprop="datePublished">2016-10-24</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Innards/">内核</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文： <a href="https://techtake.info/2016/10/13/symmetric-multi-processing-multi-threading-and-synchronisation-explained/" target="_blank" rel="noopener">https://techtake.info/2016/10/13/symmetric-multi-processing-multi-threading-and-synchronisation-explained/</a></p>
+<blockquote>
+<p>The operating system assigns a thread to be executed on a core for some time, and then uses the same core for another thread. This process is called scheduling, and the duration for which a thread is assigned to a processor / core is called a time slice. When the time slice for a thread is over, it is <u>pre-empted</u> (taken off the processor) and put aside for scheduling. Whenever the thread gets another time slice for itself, it resumes from where it had been pre-empted in the last run.</p>
+</blockquote>
+<p>这个preempt之前一直一个很深的概念，感觉这个解释很好。<code>preempt</code>英文词典中意思<br>是<code>先占、先发制人</code>，这里的主要意思其实是<code>yield</code>，就是主动从处理器（processor）<br>中退出（taken off）。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2016/10/24/SMP-multi-thread-and-synchronisation-explained/" data-id="cjrjycrqq00h9batifc1ekw5s" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/multithreading/">multithreading</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    
+    <article id="post-Deep-exploration-into-python-dict-module" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/08/Deep-exploration-into-python-dict-module/">Deep exploration into python: dict module</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2016/09/08/Deep-exploration-into-python-dict-module/">
+    <time datetime="2016-09-08T05:53:40.000Z" itemprop="datePublished">2016-09-08</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Innards/">内核</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文：<a href="https://www.buzzfeed.com/andrewkelleher/deep-exploration-into-python-lets-review-the-dict-module" target="_blank" rel="noopener">https://www.buzzfeed.com/andrewkelleher/deep-exploration-into-python-lets-review-the-dict-module</a></p>
+<p>应该是一系列文章，写的非常好。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2016/09/08/Deep-exploration-into-python-dict-module/" data-id="cjrjycrjy004fbati087sevwc" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    
+    <article id="post-PyObject-Internal" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/01/PyObject-Internal/">PyObject Internal</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2016/08/01/PyObject-Internal/">
+    <time datetime="2016-08-01T02:15:57.000Z" itemprop="datePublished">2016-08-01</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Innards/">内核</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文：<a href="http://www.gahcep.com/python-internals-pyobject/" target="_blank" rel="noopener">http://www.gahcep.com/python-internals-pyobject/</a></p>
+<h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><ul>
+<li>what is <a href="http://stackoverflow.com/questions/3854113/what-is-an-opaque-value" target="_blank" rel="noopener">opaque data type</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2016/08/01/PyObject-Internal/" data-id="cjrjycrp200e3batinfe2qblo" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPython/">CPython</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    
+      
+        <div class="archive-year-wrap">
+          <i class="fa fa-calendar"></i>
+          <a href="/archives/2015" class="archive-year">2015</a>
+        </div>
+    
+    <article id="post-Python-GC-and-Destructure" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/15/Python-GC-and-Destructure/">Python GC and Destructure</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/05/15/Python-GC-and-Destructure/">
+    <time datetime="2015-05-15T10:00:00.000Z" itemprop="datePublished">2015-05-15</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Innards/">内核</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先看一个示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">In [1]:</span><br><span class="line"></span><br><span class="line">class Foo:</span><br><span class="line">    def __init__(self, x):</span><br><span class="line">        print &quot;Foo: Hi&quot;</span><br><span class="line">        self.x = x</span><br><span class="line">    def __del__(self):</span><br><span class="line">        print &quot;Foo: bye&quot;</span><br><span class="line"></span><br><span class="line">class Bar:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        print &quot;Bar: Hi&quot;</span><br><span class="line">        self.foo = Foo(self) # x = this instance</span><br><span class="line"></span><br><span class="line">    def __del__(self):</span><br><span class="line">        print &quot;Bar: Bye&quot;</span><br><span class="line"></span><br><span class="line">bar = Bar()</span><br><span class="line"># del bar # This doesn&apos;t work either.</span><br><span class="line">Bar: Hi</span><br><span class="line">Foo: Hi</span><br><span class="line">In [2]:</span><br><span class="line"></span><br><span class="line">import sys</span><br><span class="line">In [3]:</span><br><span class="line"></span><br><span class="line">sys.getrefcount(bar)</span><br><span class="line">Out[3]:</span><br><span class="line">3</span><br></pre></td></tr></table></figure>
+<p>这里的destructor在对象被销毁的时候并没有被调用，原因就是：</p>
+<ul>
+<li>Cyle Reference</li>
+<li>CPython的实现在对象的GC是基于简单的reference count</li>
+</ul>
+<p>即使我们使用<code>del bar</code>这样的操作，也不会触发destructor，原始是：</p>
+<ul>
+<li>当前的对象的reference count是3</li>
+<li>del只会让reference count减1</li>
+</ul>
+<p>根据文档：</p>
+<blockquote>
+<p>“del x” doesn’t directly call <code>x.__del__()</code> — the former decrements the reference count for x by one, and the latter is only called when x’s reference count reaches zero. Some common situations that may prevent the reference count of an object from going to zero include: circular references between objects</p>
+</blockquote>
+<p>也就是说<code>x.__del__</code>跟<code>del x</code>不是同义的，并且根据文档，如果在cycle reference的对象<br>中使用<code>__del__</code>将会造成内存泄露：</p>
+<blockquote>
+<p>Circular references which are garbage are detected when the option cycle detector is enabled (it’s on by default), but can only be cleaned up if there are no Python-level <code>__del__()</code> methods involved.</p>
+</blockquote>
+<blockquote>
+<p>A list of objects which the collector found to be unreachable but could not be freed (uncollectable objects). By default, this list contains only objects with <code>__del__()</code> methods.26.1Objects that have <code>__del__()</code> methods and are part of a reference cycle cause the entire reference cycle to be uncollectable, including objects not necessarily in the cycle but reachable only from it. Python doesn’t collect such cycles automatically because, in general, it isn’t possible for Python to guess a safe order in which to run the <code>__del__()</code> methods. […] It’s generally better to avoid the issue by not creating cycles containing objects with <code>__del__()</code> methods</p>
+</blockquote>
+<h3 id="程序退出时，destructor会被调用吗？"><a href="#程序退出时，destructor会被调用吗？" class="headerlink" title="程序退出时，destructor会被调用吗？"></a>程序退出时，destructor会被调用吗？</h3><p><a href="http://www.python.org/search/hypermail/python-1993/0109.html" target="_blank" rel="noopener">答案</a>是不确定。</p>
+<blockquote>
+<p>One final thing to ponder: if we have a <code>__del__</code> method, should the interpreter guarantee that it is called when the program exits? (Like C++, which guarantees that destructors of global variables are called.) The only way to guarantee this is to go running around all modules and delete all their variables. But this means that <code>__del__</code> method cannot trust that any global variables it might want to use still exist, since there is no way to know in what order variables are to be deleted.</p>
+</blockquote>
+<h3 id="Exception-in-del"><a href="#Exception-in-del" class="headerlink" title="Exception in __del__"></a>Exception in <code>__del__</code></h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def __del__(self):</span><br><span class="line">    raise Exception(&quot;Oopsy&quot;)</span><br><span class="line">    print &quot;Bar: Bye&quot;</span><br><span class="line"></span><br><span class="line">Exception exceptions.Exception: Exception(&apos;Oopsy&apos;,) in &gt; ignored</span><br><span class="line">Bar: Hi</span><br><span class="line">Foo: Hi</span><br><span class="line">Foo: bye</span><br></pre></td></tr></table></figure>
+<p>会被忽略，只是编译器会有warning。</p>
+<h3 id="修正后的版本："><a href="#修正后的版本：" class="headerlink" title="修正后的版本："></a>修正后的版本：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import weakref</span><br><span class="line"></span><br><span class="line">class Foo:</span><br><span class="line">    def __init__(self, x):</span><br><span class="line">        print &quot;Foo: Hi&quot;</span><br><span class="line">        self.x = weakref.ref(x)</span><br><span class="line">    def __del__(self):</span><br><span class="line">        print &quot;Foo: bye&quot;</span><br><span class="line"></span><br><span class="line">class Bar:</span><br><span class="line">    def __init__(self):</span><br><span class="line">        print &quot;Bar: Hi&quot;</span><br><span class="line">        self.foo = Foo(self) # x = this instance</span><br><span class="line"></span><br><span class="line">    def __del__(self):</span><br><span class="line">        print &quot;Bar: Bye&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><p>[1] <a href="http://mindtrove.info/python-weak-references/" target="_blank" rel="noopener">http://mindtrove.info/python-weak-references/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/05/15/Python-GC-and-Destructure/" data-id="cjrjycrpy00flbatiroxa1rzj" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Destruction/">Destruction</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GC/">GC</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    
+    <article id="post-Python-Innard-Introduction" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/14/Python-Innard-Introduction/">Python Innard: Introduction</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/05/14/Python-Innard-Introduction/">
+    <time datetime="2015-05-14T09:55:00.000Z" itemprop="datePublished">2015-05-14</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Innards/">内核</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>翻译：《Python的内核揭秘（一）：入门》</p>
+<p>一个朋友曾经对我说：“你懂的，对某些人来说，C语言就是一堆扩展自汇编的宏”。这句话<br>是在数年前（好吧，是在llvm之前）说的，但是这话也让我语塞。Kernighan和Richie真的<br>可以在看到C语言的代码的时候可以立即解析为汇编代码？或者Tim Berners-Lee在浏览网页<br>的时候跟你我看到的内容都不同？或者Keanu Reeves在看一个新出炉的乱七八糟的汤的时候，<br>看到的究竟跟别人有啥差别？或者，严肃的说，他有看到什么玄机吗？好吧，无论如何，我<br>们回到程序，Guido van Rossum看到的Python跟别人不同吗？</p>
+<p>这篇文章是我在研究Python的内核的时候写的一系列文章的开头，我之所以写这些文章是因<br>为我觉得能够解释清楚一个东西是深刻理解一个东西的最好的方法，我在这里很愿意把我在<br>读Python代码时的心得写在这里去尝试解释Python中到底发生了什么。在这个系列文章里，<br>我主要讨论的是CPython、py3k、bytecode以及其他（unladen swallow、Jython、Cython）<br>Python相关或者类似的代码。当我在这里说Python的时候，主要说的是CPython，运行的平台<br>是posix OS，比如linux。如果你想知道Python是怎么工作的，你应该读我的文章；如果你想<br>为CPython贡献代码，你也应该读我的文章。如果有发现任何错误的地方，你可以在后面写下<br>你的意见。</p>
+<p>我在这里会写下所有关于我在读Python源代码时的心得，但是偶尔也会参考一个资料，比如<br><a href="http://docs.python.org/py3k/c-api/index.html" target="_blank" rel="noopener">这个</a>或者<a href="http://docs.python.org/py3k/extending/index.html" target="_blank" rel="noopener">另个</a>或者一些<a href="http://tech.blog.aknin.name/2010/05/07/searching-mailing-list-archives-offline/" target="_blank" rel="noopener">邮件列表</a>及<a href="http://tech.blog.aknin.name/2010/05/07/searching-mailing-list-archives-offline/" target="_blank" rel="noopener">其他</a>。我把所有的资料都放在一起，希望你可以<br>通过订阅方便阅读。在读我的文章之前，我假设你已经知道一些C语言知识、操作系统理论、<br>一些汇编、或者一些Unix的爱好。如果没有这些知识也没有关系，但是我不保证你可以顺利<br>地理解。另外，如果你还没有那些为Python开发所需要的工具链，你可以参考<a href="http://tech.blog.aknin.name/2010/04/08/contributing-to-python/" target="_blank" rel="noopener">这里</a>。</p>
+<p>首先，我们从一些假设你已经知道的知识开始，但是我认为他们从我理解的角度是重要的。<br>Python使用虚拟机（VM）去执行代码，你必须要对虚拟机有一个比较好的认识，你可以把<br>Python的虚拟机当作是JVM，而不是Virtualbox。我发现从字面意义上理解虚拟机会更容易<br>懂，它一个用软件打造的机器。CPU是一个电子仪器，用来接受输入（比如data、machine<br>code），有一个状态（register），然后根据状态+输入数据可以得到输出的结果到RAM或者<br>Bus。Python的虚拟机也是这样一个机器，使用软件打造，接受机器码输入，有一个状态。这<br>个虚拟机存在于宿主的一个进程中。</p>
+<p>让我们从一个具体的代码来对Python虚拟机有一个大概的理解，当你做<code>$python -c &#39;print
+(&quot;Hello, world!&quot;)&#39;</code>的时候，Python的二进制代码被执行了，标准的C代码库被初始化，然<br>后主程序开始执行（可以参考源代码<code>./Modules/python.c</code> <code>./Modules/main.c: Py_Main</code>）。<br>在一些常见的初始化（输入参数解析、环境变量解析等）之后，<a href="http://docs.python.org/c-api/init.html#Py_Initialize" target="_blank" rel="noopener">./Python/pythonrun.c: Py_Initialize</a>被调用。这个<br>函数是用来build和assemble，然后去运行虚拟机的，它创立了两个重要的数据结构：<br><code>interpreter state</code>和<code>thread state</code>。同时也创建了sys模块和builtins模块。我们在后<br>面会深入的解释这些概念。</p>
+<p>当这些都完成之后，Python接下来的行动是基于它要如何执行代码：</p>
+<ul>
+<li><code>-c</code>option，用来执行一个字符串</li>
+<li><code>-m</code>option，用来执行模块</li>
+<li>执行一个python文件</li>
+<li>运行REPL loop，交互模式</li>
+</ul>
+<p>对于我们的示例，我们将会执行一个字符串。为了执行这个字符串，<code>./Python/pythonrun.c:
+PyRun_SimpleStringFlags</code>将会被调用。这个函数创建了<code>__main__</code>命名空间，这个命名空<br>间将会被用来执行我们的字符串。比如你运行<code>$ python -c &#39;a=1; print(a)&#39;</code>，a将会被存<br>储在这个命名空间里。在命名空间被创建后，字符串就会在这里被执行，或者也可以理解为<br>评估（evaluate）或者解析（interpreter）。但是，首先你必须把字符串转换为机器可以<br>执行的东西。</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/05/14/Python-Innard-Introduction/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/05/14/Python-Innard-Introduction/" data-id="cjrjycru500mrbatiloylro4o" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CPython/">CPython</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python-Implementation/">Python Implementation</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    
+    <article id="post-What-Is-Bytecode-Instrumentation" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/28/What-Is-Bytecode-Instrumentation/">ByteCode Instrumentation</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/04/28/What-Is-Bytecode-Instrumentation/">
+    <time datetime="2015-04-28T05:05:00.000Z" itemprop="datePublished">2015-04-28</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Innards/">内核</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Bytecode-Instrumentation-定义"><a href="#Bytecode-Instrumentation-定义" class="headerlink" title="Bytecode Instrumentation 定义"></a>Bytecode Instrumentation 定义</h3><p>我们首先来看看，什么叫“Instrumentation”？Instrumentation这个词有很多意思，在维基百科中，它是这样解释的：</p>
+<blockquote>
+<p><strong>Instrumentation</strong> is the use of measuring instruments to monitor and control a process. It is the art and science of measurement and control of process variables within a production, laboratory, or manufacturing area.</p>
+</blockquote>
+<p>似乎中文中没有一个合适的词来描述，意思就是“使用计量器具去监控和控制一个流程”就可以被叫做“Instrumentation”。比如下面这个很<br>直观的器具就被用来做Instrumentation了。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Steuerstand01.jpg/160px-Steuerstand01.jpg" alt="Instrumentation"></p>
+<h4 id="什么是ByteCode-Instrumentation"><a href="#什么是ByteCode-Instrumentation" class="headerlink" title="什么是ByteCode Instrumentation"></a>什么是ByteCode Instrumentation</h4><blockquote>
+<p>Bytecode instrumentation (BCI) is a technique in which bytecode in injected directly into a Java class to achieve some purpose that the class did not originally support.</p>
+</blockquote>
+<p>这是我在<a href="http://www.ibm.com/developerworks/cn/java/j-rtm1/index.html" target="_blank" rel="noopener">网上</a><sub>[2]</sub>(<a href="http://www.ibm.com/developerworks/cn/java/j-rtm2/index.html)看到的一个定义，里面对“bytecode" target="_blank" rel="noopener">http://www.ibm.com/developerworks/cn/java/j-rtm2/index.html)看到的一个定义，里面对“bytecode</a> instrumentation”的翻译就是“字节码插装”，但是这里有个缺陷就是，针对字节码的插装，并不只限于Java语言，其他基于字节码的语言（比如.Net/Python）也是可以插装的。</p>
+<p>而且可以进一步延伸的是，除了有字节码插装（bytecode instrumentation）之外，也有源代码级别的插装（sourcecode instrumentation）。他们的使用场景是不一样的，比如字节码插装主要发生在程序运行时，当然编译时也是可以字节码插装的。而源代码级别的插装主要是发生在编译时。</p>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ol>
+<li><a href="http://www.ibm.com/developerworks/cn/java/j-rtm2/index.html" target="_blank" rel="noopener">http://www.ibm.com/developerworks/cn/java/j-rtm2/index.html</a></li>
+<li><a href="https://technoga.wordpress.com/2012/12/01/what-is-bytecode-instrumentation/#2" target="_blank" rel="noopener">https://technoga.wordpress.com/2012/12/01/what-is-bytecode-instrumentation/#2</a></li>
+<li><a href="https://github.com/neuroo/equip" target="_blank" rel="noopener">https://github.com/neuroo/equip</a></li>
+<li><a href="http://security.coverity.com/blog/2014/Nov/understanding-python-bytecode.html" target="_blank" rel="noopener">http://security.coverity.com/blog/2014/Nov/understanding-python-bytecode.html</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/04/28/What-Is-Bytecode-Instrumentation/" data-id="cjrjycrsw00kwbati0qwwlsd7" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ByteCode/">ByteCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    
+    <article id="post-Python-ByteCode-Internals" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/22/Python-ByteCode-Internals/">Python ByteCode in Details</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/04/22/Python-ByteCode-Internals/">
+    <time datetime="2015-04-22T09:22:00.000Z" itemprop="datePublished">2015-04-22</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Innards/">内核</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="First-Look-of-bytecode"><a href="#First-Look-of-bytecode" class="headerlink" title="First Look of bytecode"></a>First Look of bytecode</h3><p>我们先来看一个代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class A:</span><br><span class="line">  def __init__(self):</span><br><span class="line">    pass</span><br><span class="line">  def __repr__(self):</span><br><span class="line">    return &apos;A()&apos;</span><br><span class="line">a = A()</span><br><span class="line">print a</span><br></pre></td></tr></table></figure>
+<p>很容易理解，首先声明一个old style的类A，里头声明了2个方法，然后把A初始化成对象并赋值给a，最后打印a对象。</p>
+<p>我们可以把这段代码编译成python code对象：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">co2 = compile(&quot;&quot;&quot;class A:</span><br><span class="line">  def __init__(self):</span><br><span class="line">    pass</span><br><span class="line">  def __repr__(self):</span><br><span class="line">    return &apos;A()&apos;</span><br><span class="line">a = A()</span><br><span class="line">print a&quot;&quot;&quot;, &quot;class-A-input&quot;, &quot;exec&quot;)</span><br><span class="line"></span><br><span class="line">co2</span><br><span class="line">Out[114]: &lt;code object &lt;module&gt; at 00000000040B8630, file &quot;class-A-input&quot;, line 1&gt;</span><br></pre></td></tr></table></figure>
+<p>然后我们使用内置的dis模块把生成的co2对象显示为opcode：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import dis</span><br><span class="line"></span><br><span class="line">dis.dis(co2)</span><br><span class="line"></span><br><span class="line">  1           0 LOAD_CONST               0 (&apos;A&apos;)</span><br><span class="line">              3 LOAD_CONST               3 (())</span><br><span class="line">              6 LOAD_CONST               1 (&lt;code object A at 00000000040B8530, file &quot;class-A-input&quot;, line 1&gt;)</span><br><span class="line">              9 MAKE_FUNCTION            0</span><br><span class="line">             12 CALL_FUNCTION            0</span><br><span class="line">             15 BUILD_CLASS         </span><br><span class="line">             16 STORE_NAME               0 (A)</span><br><span class="line"></span><br><span class="line">  6          19 LOAD_NAME                0 (A)</span><br><span class="line">             22 CALL_FUNCTION            0</span><br><span class="line">             25 STORE_NAME               1 (a)</span><br><span class="line"></span><br><span class="line">  7          28 LOAD_NAME                1 (a)</span><br><span class="line">             31 PRINT_ITEM          </span><br><span class="line">             32 PRINT_NEWLINE       </span><br><span class="line">             33 LOAD_CONST               2 (None)</span><br><span class="line">             36 RETURN_VALUE</span><br></pre></td></tr></table></figure>
+<p>以上就是在python编译好的bytecode，以便后面在python VM中运行。</p>
+<h4 id="ByteCode解析："><a href="#ByteCode解析：" class="headerlink" title="ByteCode解析："></a>ByteCode解析：</h4><ul>
+<li>最左边的一列（1， 6， 7）是源代码里的行号，比如1就代表的是第1行。</li>
+<li>第二列（0，3,6,9……36）表示的是OPCODE表的index</li>
+<li>第三列（LOAD_CONST，MAKE_FUNCTION）是具体的OPCODE，这个OPCODE只是用来帮助人类阅读用的，python VM执行的还是前面的index</li>
+<li>第四列（0,3,1）等指的是OPARGS的index，这个index不是从一个全局表里取的，而是基于前面的OPCODE<ul>
+<li>比如：<code>LOAD_CONST</code>是从<code>co_consts</code>中取，<code>LOAD_NAME</code>是从<code>co_conames</code>中取</li>
+</ul>
+</li>
+<li>第五列是OPARGS的辅助提示，只是用来帮助人类阅读</li>
+</ul>
+<h5 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h5><ol>
+<li><a href="http://security.coverity.com/blog/2014/Nov/understanding-python-bytecode.html" target="_blank" rel="noopener">http://security.coverity.com/blog/2014/Nov/understanding-python-bytecode.html</a></li>
+<li><a href="http://akaptur.com/blog/categories/python-internals/" target="_blank" rel="noopener">http://akaptur.com/blog/categories/python-internals/</a></li>
+<li><a href="http://eli.thegreenplace.net/tag/python-internals" target="_blank" rel="noopener">http://eli.thegreenplace.net/tag/python-internals</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/04/22/Python-ByteCode-Internals/" data-id="cjrjycrpl00eubatiqq36dyog" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ByteCode/">ByteCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    
+    <article id="post-About-RCU-Read-Copy-Update-md" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/24/About-RCU-Read-Copy-Update-md/">About RCU Read Copy Update</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/03/24/About-RCU-Read-Copy-Update-md/">
+    <time datetime="2015-03-24T09:25:00.000Z" itemprop="datePublished">2015-03-24</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Innards/">内核</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>在操作系统中，RCU（Read-Copy-Update）是一种“排它锁”（mutual exclusion/Mutex）的一种<br>底层的实现，有时也被用来模拟“读写锁”（Reader-Writer-Lock）。它的特点是极低的锁开销和<br>不用等待的“读操作”。但是，由于RCU的Update操作可能消耗的资源较多，原因是系统必须保留数<br>据结构的老的版本用来服务之前存在的“读操作”。这些在更新之前的较老的数据结构只能够在所有<br>之前存在的“读操作”完成之后才能够被系统回收。</p>
+<p>在2008年之前，Linux的kernel中大概有2000处使用RCU的API，使用的地方包括网络协议栈和内<br>存管理系统。截至到2014年3月，大概有9000处使用RCU的API。</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/03/24/About-RCU-Read-Copy-Update-md/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/03/24/About-RCU-Read-Copy-Update-md/" data-id="cjrjycria000nbatimclhhxjd" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lock/">Lock</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mutex/">Mutex</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/categories/Innards/page/4/">&laquo; 上一页</a><a class="page-number" href="/categories/Innards/">1</a><span class="space">&hellip;</span><a class="page-number" href="/categories/Innards/page/3/">3</a><a class="page-number" href="/categories/Innards/page/4/">4</a><span class="page-number current">5</span>
+    </nav>
+  
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Innards/">内核</a><span class="category-list-count">48</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">函数编程</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dynamic-Programming/">动态编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Fun/">好玩</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">安全</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">安卓</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Recommend/">推荐</a><span class="category-list-count">57</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">数学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Solutions/">方案</a><span class="category-list-count">64</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">机器学习</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">程序语言</a><span class="category-list-count">71</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Notes/">笔记</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algo/">算法</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Automation/">自动化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerVision/">计算机视觉</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Review/">评测</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">面试</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">49</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Meng Jue (M)<br>
+    </div>
+  </div>
+</footer>
+
+    
+
+
+
+<script src="/js/jquery-2.2.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

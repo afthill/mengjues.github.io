@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Fear and loathing in lock free programming | Make Fun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="源：https://medium.com/@tylerneely/fear-and-loathing-in-lock-free-programming-7158b1cdd50c About CAS/TAS: Several of the most popular CPU architectures have instructions that let you atomically set memo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fear and loathing in lock free programming">
+<meta property="og:url" content="http://m.imf.cc/2017/10/12/lock-free-programming/index.html">
+<meta property="og:site_name" content="Make Fun">
+<meta property="og:description" content="源：https://medium.com/@tylerneely/fear-and-loathing-in-lock-free-programming-7158b1cdd50c About CAS/TAS: Several of the most popular CPU architectures have instructions that let you atomically set memo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-31T01:39:44.280Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fear and loathing in lock free programming">
+<meta name="twitter:description" content="源：https://medium.com/@tylerneely/fear-and-loathing-in-lock-free-programming-7158b1cdd50c About CAS/TAS: Several of the most popular CPU architectures have instructions that let you atomically set memo">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/open-fonts/css/open-sans.css">
+  <link rel="stylesheet" href="/open-fonts/css/share-tech-mono.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><i class="logo"></i><span class="site-title">Make Fun</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div class="profile" id="profile-nav">
+          <a id="profile-anchor" href="javascript:;"><img class="avatar" src="/css/images/avatar.png"><i class="fa fa-caret-down"></i></a>
+        </div>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+      
+        <td><a class="main-nav-link" href="/">Home</a></td>
+      
+        <td><a class="main-nav-link" href="/archives">Archives</a></td>
+      
+        <td><a class="main-nav-link" href="/about">About</a></td>
+      
+      <td>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </td>
+      </tr>
+    </table>
+  </div>
+  
+</header>
+    <div class="outer">
+      <aside id="profile">
+  <div class="inner profile-inner">
+  	<div class="base-info profile-block">
+		  <img id="avatar" src="/css/images/avatar.png">
+      <h2 id="name">Meng Jue (M)</h2>
+      <h3 id="title">Strict Developer &amp; Funny Player</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Shanghai, China</span>
+      <a id="follow" href="https://github.com/MengjueM">关注我</a>
+  	</div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        319
+        <span>文章</span>
+      </div>
+      <div class="article-info-block">
+        236
+        <span>标签</span>
+      </div>
+    </div>
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+        
+          <td><a href="http://github.com/MengjueM" title="github"><i class="fa fa-github"></i></a></td>
+        
+          <td><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></td>
+        
+          <td><a href="#" title="facebook"><i class="fa fa-facebook"></i></a></td>
+        
+          <td><a href="#" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
+        
+          <td><a href="/atom.xml" title="rss"><i class="fa fa-rss"></i></a></td>
+        
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+      <section id="main"><article id="post-lock-free-programming" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Fear and loathing in lock free programming
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2017/10/12/lock-free-programming/">
+    <time datetime="2017-10-12T16:00:00.000Z" itemprop="datePublished">2017-10-13</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Innards/">内核</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>源：<a href="https://medium.com/@tylerneely/fear-and-loathing-in-lock-free-programming-7158b1cdd50c" target="_blank" rel="noopener">https://medium.com/@tylerneely/fear-and-loathing-in-lock-free-programming-7158b1cdd50c</a></p>
+<p><strong>About CAS/TAS:</strong></p>
+<p>Several of the most popular CPU architectures have instructions that let you atomically set memory to a new value conditionally if you know the current value. This is called “test and set” (TAS), “compare and swap”, or “compare and set” (CAS). The hardware makes sure that only one thread “wins” if several threads attempt a CAS at the same time. All others are unsuccessful. The return value varies across implementations, but a good implementation clearly indicates success or failure.</p>
+<p>假设<code>CAS(variable, old, new)</code>是我们所使用的CAS函数，如果运行时我们的<code>variable</code>的值为<code>0</code>，那么在当前线程中的CAS函数将返回为真，其他所有竞争的线程将返回失败。</p>
+<p>CAS可以操作的数据大小一般跟系统的“word size”等同，这个“word size”一般是系统的内存地址（memory address）的长度。比如对于x86_64，CAS一般可以操作64位的数据，但是实际上x86_64可以操作128位的数据，虽然大部分x86_64上的编程语言（Java、Go、Rust）都没有使用128位的CAS。有些特别的系统会设计double word的CAS（DCAS），比如32位的架构，可以在CAS上使用64位的数据，但是大部分不会使用这个技术。</p>
+<p><strong>About Spinlock:</strong></p>
+<p>回形针锁并不是lock free的算法，因为线程将会一直阻塞直到获取锁。示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import &quot;sync/atomic&quot;</span><br><span class="line"></span><br><span class="line">var (</span><br><span class="line">  atomicLock = int32(0)</span><br><span class="line">  locked = int32(1)</span><br><span class="line">  unlocked = int32(0)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">func lock() &#123;</span><br><span class="line">  pointer := &amp;atomicLock</span><br><span class="line">  old := unlocked</span><br><span class="line">  new := locked</span><br><span class="line">  for &#123;</span><br><span class="line">    if atomic.CompareAndSwapInt32(pointer, old, new) &#123;</span><br><span class="line">      return</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func unlock() &#123;</span><br><span class="line">  atomic.StoreInt32(&amp;atomicLock, unlocked);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func main() &#123;</span><br><span class="line">  lock()</span><br><span class="line">  defer unlock()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的回形针锁（spin lock）在这里跑了一个死循环，不停的使用cas去尝试“原子性地改变atomicLock变量的值，从unlocked到locked”。CPU将会保证只有一个线程可以成功修改atomicLock的值，其他的所有线程讲会一直阻塞线程直到atomicLock的值被改为了unlocked状态。</p>
+<p>这里的spinlock看似一直在一个死循环里占用cpu去尝试直到cas成功，但是实际上有的时候，这个方案比mutex更加有效，是因为传统的mutex方案会把线程在阻塞的时候直接放入sleep状态，这导致了线程从sleep到wake的损耗，导致latency提高。所以，现代的mutex使用的其实是一个mutex和spinlock混合的方案。</p>
+<p><strong>About Hybrid Mutex:</strong></p>
+<p>Hybrid mutexes will attempt to acquire the lock quickly in userspace using atomic operations, without giving away their kernel-scheduled appointment on the CPU core. If the gambit didn’t pan out, the hybrid mutex will put the thread to sleep with a blocking syscall.</p>
+<p>Many real-world implementations of spinlocks for x86 will issue a PAUSE instruction while spinning, which improves their efficiency dramatically. In addition to spinlocks avoiding the kernel scheduling overhead of going to sleep and waking up again, we also avoid CPU frequency scaling slowdowns that can happen while blocked on a mutex, so when we enter our critical section we don’t need to pay a start-up tax.</p>
+<p><strong>About spinlock over mutext:</strong></p>
+<p>There are still some cases when you would prefer a straight-up spinlock, like if you know the expected time to acquire the lock is less expensive to you than the overhead of a modern hybrid mutex, or if you want a piece of code to be extremely responsive at the cost of some other system resource like power. But as the expected time to acquire the lock goes up, the balance shifts in favor of the mutex (mutexes in most popular threaded languages use the hybrid approach today).</p>
+<p><strong>About lock free structure: Treiber Stack</strong></p>
+<p>A Treiber stack will be our first true lock-free structure! It looks a lot like a linked list, with a head that points to the tip and nodes that point to the next node. We can push things into a lock-free stack like this:</p>
+<ol>
+<li>Create a node (effectively the same as a linked-list node)</li>
+<li>Read the current stack.head and set our node.next to it.</li>
+<li>CAS the stack’s head from the head to our new node. If it worked, we’re done! If not, GOTO 2.</li>
+</ol>
+<p>Popping the stack is similar:</p>
+<ol>
+<li>Read the current stack.head. If it’s not set, either retry or return nothing depending on if you have blocking or non-blocking semantics. The example below is non-blocking, and returns nothing.</li>
+<li>If head is set, we try to pop it. Try to CAS the stack’s headto its head.nextvalue. If it worked, return the now-severed head! Otherwise GOTO 1.</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import java.util.concurrent.atomic.*;</span><br><span class="line">import net.jcpip.annotations.*;</span><br><span class="line"></span><br><span class="line">@ThreadSafe</span><br><span class="line">public class ConcurrentStack &lt;E&gt; &#123;</span><br><span class="line">  AtomicReference&lt;Node&lt;E&gt;&gt; top = new AtomicReference&lt;Node&lt;E&gt;&gt;();</span><br><span class="line">  </span><br><span class="line">  public void push(E item) &#123;</span><br><span class="line">    Node&lt;E&gt; newHead = new Node&lt;E&gt;(item);</span><br><span class="line">    Node&lt;E&gt; oldHead;</span><br><span class="line">    do &#123;</span><br><span class="line">      oldHead = top.get();</span><br><span class="line">      newHead.next = oldHead;</span><br><span class="line">    &#125; while (!top.compareAndSet(oldHead, newHead));</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  public E pop() &#123;</span><br><span class="line">    Node&lt;E&gt; oldHead;</span><br><span class="line">    Node&lt;E&gt; newHead;</span><br><span class="line">    do &#123;</span><br><span class="line">      oldHead = top.get();</span><br><span class="line">      if (oldHead == null) &#123;</span><br><span class="line">        return null;</span><br><span class="line">      &#125;</span><br><span class="line">      newHead = oldHead.next;</span><br><span class="line">    &#125; while (!top.compareAndSet(oldHead, newHead));</span><br><span class="line">    </span><br><span class="line">    return oldHead.item;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  private static class Node&lt;E&gt; &#123;</span><br><span class="line">    public final E item;</span><br><span class="line">    public Node&lt;E&gt; next;</span><br><span class="line">    </span><br><span class="line">    public Node(E item) &#123;</span><br><span class="line">      this.item = item;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里实现的lock free方案使用了spinlock，如果开了太多线程，大部分在spinlock里的<code>compareAndSet</code>操作将会空转，导致效率低下。</p>
+<p><strong>About wait-free</strong></p>
+<p>Wait-free algorithms, a subset of lock-free algorithms, guarantee bounded time execution. If your algorithm involves atomic variables and a bounded number of steps, you‘ve got a wait-free algorithm on your hands!</p>
+<p>Wait free的两种使用场景：</p>
+<ul>
+<li>限定的执行步数：The use of a constant number of instructions (1 in the case of incrementing or decrementing an atomic reference counter) is actually an example of a particularly strong type of wait-freedom known as “wait-free population oblivious” where the number of steps we take in our code is not dependent on the number of threads participating.</li>
+<li>限定的执行线程数：Other wait-free algorithms sometimes work by trying to complete the work of a bounded number of other threads, and that bound could grow or shrink as the number of participating threads changes.</li>
+</ul>
+<p><strong>Lock free vs Wait free</strong></p>
+<p>In the last few years, folks have found a nice balance between usually-fast lock-free and reliable wait-free algorithms by attempting the lock-free version at first, and falling back to the wait-free version if it doesn’t pan out. This reminds me of the compromise found in modern hybrid mutexes to improve the flexibility of the implementation.</p>
+<p><strong>About Copy-on-Write</strong></p>
+<p>A technique sometimes used in databases and filesystems is shadow paging. Sometimes we want to atomically update multiple items stored in a tree structure. The basic idea is:</p>
+<ol>
+<li>read the pointer to the root</li>
+<li>copy the things we want to change into new tree nodes, then go up the tree creating new (copied) nodes that reference the previous copied and changed level, going up the tree until we reach the root. All of this is done without changing the original tree.</li>
+<li>Finally, we CAS the root to point to our changed pages.</li>
+<li>if the CAS worked, our multi-item transaction was successful. if not, we either retry or propagate an error to the next higher level of our system.</li>
+</ol>
+<p>COW经常会被使用在lock free系统里，但是大部分时间仔细调优的（fine grained）Read-Write-Lock是一个更好的方案。</p>
+<p><strong>Lock free中会出现的问题：ABA</strong></p>
+<p>The ABA Problem</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">5 == 5 — 1 + 1</span><br></pre></td></tr></table></figure>
+<p>One may assume “if our CAS succeeded, nothing has happened since we read the old value”. This is only true for monotonic values like a counter that you only increment. But if you can increment AND decrement the counter, all hell breaks loose. If a non-monotonic value was 17 one minute ago and it’s 17 now, there may have been a bunch of random increments and decrements in the interlude.</p>
+<p><strong>ABA and Pointers</strong></p>
+<p>Pointers are not monotonic!!! Our memory allocators often will put a new memory family in the same memory house when the old one moves away to memory heaven (or memory hell if they were bad and spent their lives writing lock-free algorithms).</p>
+<p>也就是说，内存分配器会在内存优化时记忆前一次的位置，导致被释放的内存地址里的数据的状态已经失效而在CAS却不自知。</p>
+<p><strong>Other issues</strong></p>
+<ul>
+<li>Memory model and memory barrier.</li>
+<li>compile reorder and optimization.</li>
+<li>compile inline.</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2017/10/12/lock-free-programming/" data-id="cjrjycrv500ozbatikvs826ec" class="article-share-link">分享到</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/10/15/about-pointer-arithmetic/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          指针运算的技巧
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/12/the-decorator-wont-tell-you/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">python decorator解密</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Innards/">内核</a><span class="category-list-count">48</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">函数编程</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dynamic-Programming/">动态编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Fun/">好玩</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">安全</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">安卓</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Recommend/">推荐</a><span class="category-list-count">57</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">数学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Solutions/">方案</a><span class="category-list-count">64</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">机器学习</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">程序语言</a><span class="category-list-count">71</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Notes/">笔记</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algo/">算法</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Automation/">自动化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerVision/">计算机视觉</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Review/">评测</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">面试</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">49</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Meng Jue (M)<br>
+    </div>
+  </div>
+</footer>
+
+    
+
+
+
+<script src="/js/jquery-2.2.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

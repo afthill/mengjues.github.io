@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Tag: Javascript | Make Fun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Make fun with the world">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Make Fun">
+<meta property="og:url" content="http://m.imf.cc/tags/Javascript/index.html">
+<meta property="og:site_name" content="Make Fun">
+<meta property="og:description" content="Make fun with the world">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Make Fun">
+<meta name="twitter:description" content="Make fun with the world">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/open-fonts/css/open-sans.css">
+  <link rel="stylesheet" href="/open-fonts/css/share-tech-mono.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><i class="logo"></i><span class="site-title">Make Fun</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div class="profile" id="profile-nav">
+          <a id="profile-anchor" href="javascript:;"><img class="avatar" src="/css/images/avatar.png"><i class="fa fa-caret-down"></i></a>
+        </div>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+      
+        <td><a class="main-nav-link" href="/">Home</a></td>
+      
+        <td><a class="main-nav-link" href="/archives">Archives</a></td>
+      
+        <td><a class="main-nav-link" href="/about">About</a></td>
+      
+      <td>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </td>
+      </tr>
+    </table>
+  </div>
+  
+</header>
+    <div class="outer">
+      <aside id="profile">
+  <div class="inner profile-inner">
+  	<div class="base-info profile-block">
+		  <img id="avatar" src="/css/images/avatar.png">
+      <h2 id="name">Meng Jue (M)</h2>
+      <h3 id="title">Strict Developer &amp; Funny Player</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Shanghai, China</span>
+      <a id="follow" href="https://github.com/MengjueM">关注我</a>
+  	</div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        319
+        <span>文章</span>
+      </div>
+      <div class="article-info-block">
+        236
+        <span>标签</span>
+      </div>
+    </div>
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+        
+          <td><a href="http://github.com/MengjueM" title="github"><i class="fa fa-github"></i></a></td>
+        
+          <td><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></td>
+        
+          <td><a href="#" title="facebook"><i class="fa fa-facebook"></i></a></td>
+        
+          <td><a href="#" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
+        
+          <td><a href="/atom.xml" title="rss"><i class="fa fa-rss"></i></a></td>
+        
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+      <section id="main">
+  
+  
+    
+    
+      
+        <div class="archive-year-wrap">
+          <i class="fa fa-calendar"></i>
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+    
+    <article id="post-Javascript-Var-Let-Hoisting" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/05/Javascript-Var-Let-Hoisting/">Javascript中的Var、Let与Hoisting详解</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2016/08/05/Javascript-Var-Let-Hoisting/">
+    <time datetime="2016-08-05T15:53:02.000Z" itemprop="datePublished">2016-08-05</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Coding/">程序语言</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Hoisting is the process of virtually moving the variable or function definition to the beginning of the scope, usually for variable statement var and function declaration function fun() {…}.</p>
+</blockquote>
+<p>原文： <a href="https://rainsoft.io/variables-lifecycle-and-why-let-is-not-hoisted/" target="_blank" rel="noopener">https://rainsoft.io/variables-lifecycle-and-why-let-is-not-hoisted/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2016/08/05/Javascript-Var-Let-Hoisting/" data-id="cjrjycrni00b6batir8zzhv97" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    
+      
+        <div class="archive-year-wrap">
+          <i class="fa fa-calendar"></i>
+          <a href="/archives/2015" class="archive-year">2015</a>
+        </div>
+    
+    <article id="post-Introduction-to-React-Reader-Notes" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/30/Introduction-to-React-Reader-Notes/">《Introduction to React》 阅读笔记</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/12/30/Introduction-to-React-Reader-Notes/">
+    <time datetime="2015-12-30T05:28:07.000Z" itemprop="datePublished">2015-12-30</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Coding/">程序语言</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Chapter-01-什么是React"><a href="#Chapter-01-什么是React" class="headerlink" title="Chapter 01: 什么是React"></a>Chapter 01: 什么是React</h2><p>React诞生于Facebook的广告部门，开始的时候这些前端的程序依然使用的是MVC模式去渲染模板的方法构建，这些模式主要用来处理数据集的双向绑定的问题。后来演进为现在的React的全新的前端开发模式，包括使用virtual DOM，JSX，Flux概念来构建复杂的javascript程序和前端用户界面。再到后面，react通过提供react native延及到手机开发领域，使用与react同样的开发模式和理念。</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/12/30/Introduction-to-React-Reader-Notes/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/12/30/Introduction-to-React-Reader-Notes/" data-id="cjrjycrn300a6bati0mrhl6uz" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/">React</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    
+    <article id="post-Javascript-the-core" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/22/Javascript-the-core/">EMCA in details</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/04/22/Javascript-the-core/">
+    <time datetime="2015-04-22T01:48:00.000Z" itemprop="datePublished">2015-04-22</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Coding/">程序语言</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="Summary"><a href="#Summary" class="headerlink" title="Summary:"></a>Summary:</h5><p><a href="http://dmitrysoshnikov.com/ecmascript/javascript-the-core/" target="_blank" rel="noopener">Javascript, the Core</a></p>
+<h5 id="Contents"><a href="#Contents" class="headerlink" title="Contents:"></a>Contents:</h5><ol>
+<li><a href="http://dmitrysoshnikov.com/ecmascript/chapter-1-execution-contexts/" target="_blank" rel="noopener">Execution Context</a></li>
+<li><a href="http://dmitrysoshnikov.com/ecmascript/chapter-2-variable-object/" target="_blank" rel="noopener">Variable Object</a></li>
+<li><a href="http://dmitrysoshnikov.com/ecmascript/chapter-3-this/" target="_blank" rel="noopener">this</a></li>
+<li><a href="http://dmitrysoshnikov.com/ecmascript/chapter-4-scope-chain/" target="_blank" rel="noopener">Scope Chain</a></li>
+<li><a href="http://dmitrysoshnikov.com/ecmascript/chapter-5-functions/" target="_blank" rel="noopener">Functions</a></li>
+<li><a href="http://dmitrysoshnikov.com/ecmascript/chapter-6-closures/" target="_blank" rel="noopener">Closures</a></li>
+<li><a href="http://dmitrysoshnikov.com/ecmascript/chapter-7-1-oop-general-theory/" target="_blank" rel="noopener">OOP, the general theory</a></li>
+<li><a href="http://dmitrysoshnikov.com/ecmascript/chapter-7-2-oop-ecmascript-implementation/" target="_blank" rel="noopener">OOP, ECMA implementation</a></li>
+<li><a href="http://dmitrysoshnikov.com/ecmascript/chapter-8-evaluation-strategy/" target="_blank" rel="noopener">Evaluation Strategy</a></li>
+</ol>
+<h5 id="Quiz"><a href="#Quiz" class="headerlink" title="Quiz:"></a>Quiz:</h5><p><a href="http://dmitrysoshnikov.com/ecmascript/the-quiz/" target="_blank" rel="noopener">http://dmitrysoshnikov.com/ecmascript/the-quiz/</a></p>
+<h5 id="Reference"><a href="#Reference" class="headerlink" title="Reference:"></a>Reference:</h5><p><a href="http://dmitrysoshnikov.com/category/ecmascript" target="_blank" rel="noopener">http://dmitrysoshnikov.com/category/ecmascript</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/04/22/Javascript-the-core/" data-id="cjrjycrnj00b9baticihwgayv" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    
+    <article id="post-Understanding-CORS" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/25/Understanding-CORS/">Understanding CORS</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/03/25/Understanding-CORS/">
+    <time datetime="2015-03-25T07:12:37.000Z" itemprop="datePublished">2015-03-25</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Solutions/">方案</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="About-CORS"><a href="#About-CORS" class="headerlink" title="About CORS"></a>About CORS</h3><p>Cross-origin resource sharing (CORS) is a mechanism that allows many resources (e.g. fonts, JavaScript, etc.) on a web page to be requested from another domain outside the domain from which the resource originated.</p>
+<p>A web page may freely embed images, stylesheets, scripts, iframes, videos and some plugin content (such as Adobe Flash) from any other domain.</p>
+<p>However embedded web fonts and AJAX (XMLHttpRequest) requests have traditionally been limited to accessing the same domain as the parent web page (as per the same-origin security policy).</p>
+<p>“Cross-domain” AJAX requests are forbidden by default because of their ability to perform advanced requests (POST, PUT, DELETE and other types of HTTP requests, along with specifying custom HTTP headers) that introduce many security issues as described in cross-site scripting.</p>
+<p>CORS defines a way in which a browser and server can interact to safely determine whether or not to allow the cross-origin request. It allows for more freedom and functionality than purely same-origin requests, but is more secure than simply allowing all cross-origin requests. It is a recommended standard of the W3C<sup>[*]</sup>(<a href="http://www.w3.org/TR/cors/)" target="_blank" rel="noopener">http://www.w3.org/TR/cors/)</a>.</p>
+<h3 id="How-CORS-works"><a href="#How-CORS-works" class="headerlink" title="How CORS works"></a>How CORS works</h3><p>The CORS standard describes new HTTP headers which provide browsers and servers a way to request remote URLs only when they have permission. Although some validation and authorization can be performed by the server, it is generally the browser’s responsibility to support these headers and respect the restrictions they impose.</p>
+<p>For AJAX and HTTP request methods that can modify data (usually HTTP methods other than GET, or for POST usage with certain MIME types), the specification mandates that browsers “preflight” the request, soliciting supported methods from the server with an HTTP OPTIONS request header, and then, upon “approval” from the server, sending the actual request with the actual HTTP request method. Servers can also notify clients whether “credentials” (including Cookies and HTTP Authentication data) should be sent with requests.</p>
+<h3 id="Sample"><a href="#Sample" class="headerlink" title="Sample"></a>Sample</h3><ol>
+<li>The browser sends the request with an Origin HTTP header. The value of this header is the domain that served the parent page. When a page from <a href="http://www.foo.com" target="_blank" rel="noopener">http://www.foo.com</a> attempts to access a user’s data in bar.com, the following request header would be sent to bar.com:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Origin: http://www.foo.com</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><p>The server may respond with:</p>
+<ul>
+<li><p>An Access-Control-Allow-Origin (ACAO) header in its response indicating which origin sites are allowed. For example:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Access-Control-Allow-Origin: http://www.foo.com</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>An error page if the server does not allow the cross-origin request</p>
+</li>
+<li>An Access-Control-Allow-Origin (ACAO) header with a wildcard that allows all domains: <code>Access-Control-Allow-Origin: *</code></li>
+</ul>
+</li>
+</ol>
+<p>This is generally not appropriate when using the same-origin security policy. The only case where this is appropriate when using the same-origin policy is when a page or API response is considered completely public content and it is intended to be accessible to everyone, including any code on any site. For example, this policy is appropriate for freely-available web fonts on public hosting services like Google Fonts.</p>
+<h3 id="Preflight-example"><a href="#Preflight-example" class="headerlink" title="Preflight example"></a>Preflight example</h3><p>When performing certain types of cross-domain AJAX requests, modern browsers that support CORS will insert an extra “preflight” request to determine whether they have permission to perform the action.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">OPTIONS /</span><br><span class="line">Host: bar.com</span><br><span class="line">Origin: http://foo.com</span><br></pre></td></tr></table></figure>
+<p>If bar.com is willing to accept the action, it may respond with the following headers:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Access-Control-Allow-Origin: http://foo.com</span><br><span class="line">Access-Control-Allow-Methods: PUT, DELETE</span><br></pre></td></tr></table></figure>
+<h3 id="Headers"><a href="#Headers" class="headerlink" title="Headers"></a>Headers</h3><p>The HTTP headers that relate to CORS are:<br>Request headers</p>
+<pre><code>Origin
+Access-Control-Request-Method
+Access-Control-Request-Headers
+</code></pre><p>Response headers</p>
+<pre><code>Access-Control-Allow-Origin
+Access-Control-Allow-Credentials
+Access-Control-Expose-Headers
+Access-Control-Max-Age
+Access-Control-Allow-Methods
+Access-Control-Allow-Headers
+</code></pre><p>(待续……非完成)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/03/25/Understanding-CORS/" data-id="cjrjycrrx00jqbatiinsdye9z" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AJAX/">AJAX</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CORS/">CORS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Innards/">内核</a><span class="category-list-count">48</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">函数编程</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dynamic-Programming/">动态编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Fun/">好玩</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">安全</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">安卓</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Recommend/">推荐</a><span class="category-list-count">57</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">数学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Solutions/">方案</a><span class="category-list-count">64</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">机器学习</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">程序语言</a><span class="category-list-count">71</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Notes/">笔记</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algo/">算法</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Automation/">自动化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerVision/">计算机视觉</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Review/">评测</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">面试</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">49</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Meng Jue (M)<br>
+    </div>
+  </div>
+</footer>
+
+    
+
+
+
+<script src="/js/jquery-2.2.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

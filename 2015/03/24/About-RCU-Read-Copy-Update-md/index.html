@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>About RCU Read Copy Update | Make Fun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Overview在操作系统中，RCU（Read-Copy-Update）是一种“排它锁”（mutual exclusion/Mutex）的一种底层的实现，有时也被用来模拟“读写锁”（Reader-Writer-Lock）。它的特点是极低的锁开销和不用等待的“读操作”。但是，由于RCU的Update操作可能消耗的资源较多，原因是系统必须保留数据结构的老的版本用来服务之前存在的“读操作”。这些在更新之">
+<meta name="keywords" content="Mutex,Lock">
+<meta property="og:type" content="article">
+<meta property="og:title" content="About RCU Read Copy Update">
+<meta property="og:url" content="http://m.imf.cc/2015/03/24/About-RCU-Read-Copy-Update-md/index.html">
+<meta property="og:site_name" content="Make Fun">
+<meta property="og:description" content="Overview在操作系统中，RCU（Read-Copy-Update）是一种“排它锁”（mutual exclusion/Mutex）的一种底层的实现，有时也被用来模拟“读写锁”（Reader-Writer-Lock）。它的特点是极低的锁开销和不用等待的“读操作”。但是，由于RCU的Update操作可能消耗的资源较多，原因是系统必须保留数据结构的老的版本用来服务之前存在的“读操作”。这些在更新之">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://m.imf.cc/images/Rcu_api.jpg">
+<meta property="og:updated_time" content="2019-01-31T01:39:44.268Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="About RCU Read Copy Update">
+<meta name="twitter:description" content="Overview在操作系统中，RCU（Read-Copy-Update）是一种“排它锁”（mutual exclusion/Mutex）的一种底层的实现，有时也被用来模拟“读写锁”（Reader-Writer-Lock）。它的特点是极低的锁开销和不用等待的“读操作”。但是，由于RCU的Update操作可能消耗的资源较多，原因是系统必须保留数据结构的老的版本用来服务之前存在的“读操作”。这些在更新之">
+<meta name="twitter:image" content="http://m.imf.cc/images/Rcu_api.jpg">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/open-fonts/css/open-sans.css">
+  <link rel="stylesheet" href="/open-fonts/css/share-tech-mono.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><i class="logo"></i><span class="site-title">Make Fun</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div class="profile" id="profile-nav">
+          <a id="profile-anchor" href="javascript:;"><img class="avatar" src="/css/images/avatar.png"><i class="fa fa-caret-down"></i></a>
+        </div>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+      
+        <td><a class="main-nav-link" href="/">Home</a></td>
+      
+        <td><a class="main-nav-link" href="/archives">Archives</a></td>
+      
+        <td><a class="main-nav-link" href="/about">About</a></td>
+      
+      <td>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </td>
+      </tr>
+    </table>
+  </div>
+  
+</header>
+    <div class="outer">
+      <aside id="profile">
+  <div class="inner profile-inner">
+  	<div class="base-info profile-block">
+		  <img id="avatar" src="/css/images/avatar.png">
+      <h2 id="name">Meng Jue (M)</h2>
+      <h3 id="title">Strict Developer &amp; Funny Player</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Shanghai, China</span>
+      <a id="follow" href="https://github.com/MengjueM">关注我</a>
+  	</div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        319
+        <span>文章</span>
+      </div>
+      <div class="article-info-block">
+        236
+        <span>标签</span>
+      </div>
+    </div>
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+        
+          <td><a href="http://github.com/MengjueM" title="github"><i class="fa fa-github"></i></a></td>
+        
+          <td><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></td>
+        
+          <td><a href="#" title="facebook"><i class="fa fa-facebook"></i></a></td>
+        
+          <td><a href="#" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
+        
+          <td><a href="/atom.xml" title="rss"><i class="fa fa-rss"></i></a></td>
+        
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+      <section id="main"><article id="post-About-RCU-Read-Copy-Update-md" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      About RCU Read Copy Update
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/03/24/About-RCU-Read-Copy-Update-md/">
+    <time datetime="2015-03-24T09:25:00.000Z" itemprop="datePublished">2015-03-24</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Innards/">内核</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h3><p>在操作系统中，RCU（Read-Copy-Update）是一种“排它锁”（mutual exclusion/Mutex）的一种<br>底层的实现，有时也被用来模拟“读写锁”（Reader-Writer-Lock）。它的特点是极低的锁开销和<br>不用等待的“读操作”。但是，由于RCU的Update操作可能消耗的资源较多，原因是系统必须保留数<br>据结构的老的版本用来服务之前存在的“读操作”。这些在更新之前的较老的数据结构只能够在所有<br>之前存在的“读操作”完成之后才能够被系统回收。</p>
+<p>在2008年之前，Linux的kernel中大概有2000处使用RCU的API，使用的地方包括网络协议栈和内<br>存管理系统。截至到2014年3月，大概有9000处使用RCU的API。</p>
+<a id="more"></a>
+<h3 id="Advantage-and-Disadvantage"><a href="#Advantage-and-Disadvantage" class="headerlink" title="Advantage and Disadvantage"></a>Advantage and Disadvantage</h3><p>由于RCU中的数据结构在“所有的读操作完成”之后才会被回收，所以这种特性使RCU的读操作尽可<br>能使用轻量级的同步，甚至在一些特殊的情境下，根本不需要任何同步。RCU中的更新（Update）<br>操作利用了大部分操作系统中“单对齐指针（Single Aligned Pointer）的写操作是原子性<br>（Atomic）的”，允许对一个链表的数据结构进行原子操作（包括插入、删除、替换）的时候不用<br>关心正在并发进行的读操作。这些并发的读操作可以持续访问数据的老的版本，并且能够在读的同<br>时，执行原子性的Read-Modify-Write操作，或者其他一些在现代的SMP架构的计算机中一些比较<br>费资源的“内存屏障（memory barrier）”以及“缓存没有命中（cache misses）”等操作也可以<br>在没有锁竞争（lock contention）的前提下被同时执行。</p>
+<p>相比较而言，在一些传统的“基于锁”的方案里，因为担心在<em>读操作</em>的时候，数据结构被更新，而<br>必须使用“重量级”的锁去阻止任何其他针对该数据结构的操作。</p>
+<p>但是RCU也有一些劣势，由于Update操作比较浪费资源，因此经常被应用在一些读比较多而写比较<br>少的地方。虽然RCU的本质是轻量级的读写同步方案，但是在某些算法里，读写同步并不能有效地<br>被利用。</p>
+<h3 id="RCU-interface"><a href="#RCU-interface" class="headerlink" title="RCU interface"></a>RCU interface</h3><p>RCU存在于多数的操作系统中，在2002年被加入linux kernel，User级别的实现可以在liburcu中<br>发现。以下的实现是参考linux kernel 2.6中的RCU实现，核心的API是非常小的：</p>
+<ul>
+<li>rcu_read_lock(): 保证RCU的读操作被“critical section”所保护而不会被系统回收；</li>
+<li>rcu_read_unlock(): 读操作完成之后，通知系统被RCU reader所保护的数据结构可以被系统<br>回收；</li>
+<li>synchronize_rcu(): 阻塞程序运行止到所有的“之前的”读操作被完成之后，但是该语句并不<br>阻塞“之后的”的读操作；<ul>
+<li>由于synchronize_rcu()用来标识所有之前的读操作是否完成，因此它的实现对RCU来说非<br>常关键，在一个有大量读操作的环境中，synchronize_rcu的overhead必须要保证非常小。<br>在linux中，没有使用阻塞的方法，而是注册一个call back函数用来当所有的之前的读操作<br>完成之后被调用。这种call back的变种RCU被linux称作call_rcu；</li>
+</ul>
+</li>
+<li>rcu_assign_pointer(): RCU的更新操作使用该函数去RCU保护的指针赋一个新的值，用来保证<br>“updater”与“reader”之间可以安全交流。该函数返回一个新的值，同时也执行其他CPU平台上的<br>“内存屏障”相关的指令；</li>
+<li>rcu_dereference(): “reader”用来取得一个被RCU保护的指针，该函数返回的值可以安全地被<br>“dereference”，同时也将执行一些其他辅助的CPU或者平台相关的指令；</li>
+</ul>
+<p><img src="/images/Rcu_api.jpg" alt="RCU API communication"></p>
+<p>（待续……）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/03/24/About-RCU-Read-Copy-Update-md/" data-id="cjrjycria000nbatimclhhxjd" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lock/">Lock</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mutex/">Mutex</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/25/Understanding-CORS/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Understanding CORS
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/03/16/Java-String-intern-in-6-and-after/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java String intern()在Java6和之后版本的区别</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Innards/">内核</a><span class="category-list-count">48</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">函数编程</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dynamic-Programming/">动态编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Fun/">好玩</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">安全</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">安卓</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Recommend/">推荐</a><span class="category-list-count">57</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">数学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Solutions/">方案</a><span class="category-list-count">64</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">机器学习</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">程序语言</a><span class="category-list-count">71</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Notes/">笔记</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algo/">算法</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Automation/">自动化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerVision/">计算机视觉</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Review/">评测</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">面试</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">49</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Meng Jue (M)<br>
+    </div>
+  </div>
+</footer>
+
+    
+
+
+
+<script src="/js/jquery-2.2.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

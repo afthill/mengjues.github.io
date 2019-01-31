@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Continuation vs Coroutine vs Thread | Make Fun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这是一篇零碎的笔记，后期有时间会整理一下。  Continuation根据维基百科的解释，continuation其实就是某个程序在运行时的状态。  In computer science and computer programming, a continuation is an abstract representation of the control state of a computer">
+<meta name="keywords" content="Continuation,Thread,Coroutine">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Continuation vs Coroutine vs Thread">
+<meta property="og:url" content="http://m.imf.cc/2016/10/09/Continuation-vs-Coroutine-vs-Thread/index.html">
+<meta property="og:site_name" content="Make Fun">
+<meta property="og:description" content="这是一篇零碎的笔记，后期有时间会整理一下。  Continuation根据维基百科的解释，continuation其实就是某个程序在运行时的状态。  In computer science and computer programming, a continuation is an abstract representation of the control state of a computer">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-31T01:39:44.272Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Continuation vs Coroutine vs Thread">
+<meta name="twitter:description" content="这是一篇零碎的笔记，后期有时间会整理一下。  Continuation根据维基百科的解释，continuation其实就是某个程序在运行时的状态。  In computer science and computer programming, a continuation is an abstract representation of the control state of a computer">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/open-fonts/css/open-sans.css">
+  <link rel="stylesheet" href="/open-fonts/css/share-tech-mono.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><i class="logo"></i><span class="site-title">Make Fun</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div class="profile" id="profile-nav">
+          <a id="profile-anchor" href="javascript:;"><img class="avatar" src="/css/images/avatar.png"><i class="fa fa-caret-down"></i></a>
+        </div>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+      
+        <td><a class="main-nav-link" href="/">Home</a></td>
+      
+        <td><a class="main-nav-link" href="/archives">Archives</a></td>
+      
+        <td><a class="main-nav-link" href="/about">About</a></td>
+      
+      <td>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </td>
+      </tr>
+    </table>
+  </div>
+  
+</header>
+    <div class="outer">
+      <aside id="profile">
+  <div class="inner profile-inner">
+  	<div class="base-info profile-block">
+		  <img id="avatar" src="/css/images/avatar.png">
+      <h2 id="name">Meng Jue (M)</h2>
+      <h3 id="title">Strict Developer &amp; Funny Player</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Shanghai, China</span>
+      <a id="follow" href="https://github.com/MengjueM">关注我</a>
+  	</div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        319
+        <span>文章</span>
+      </div>
+      <div class="article-info-block">
+        236
+        <span>标签</span>
+      </div>
+    </div>
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+        
+          <td><a href="http://github.com/MengjueM" title="github"><i class="fa fa-github"></i></a></td>
+        
+          <td><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></td>
+        
+          <td><a href="#" title="facebook"><i class="fa fa-facebook"></i></a></td>
+        
+          <td><a href="#" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
+        
+          <td><a href="/atom.xml" title="rss"><i class="fa fa-rss"></i></a></td>
+        
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+      <section id="main"><article id="post-Continuation-vs-Coroutine-vs-Thread" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Continuation vs Coroutine vs Thread
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2016/10/09/Continuation-vs-Coroutine-vs-Thread/">
+    <time datetime="2016-10-09T17:23:55.000Z" itemprop="datePublished">2016-10-10</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Coding/">程序语言</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是一篇零碎的笔记，后期有时间会整理一下。</p>
+<hr>
+<h3 id="Continuation"><a href="#Continuation" class="headerlink" title="Continuation"></a>Continuation</h3><p>根据<a href="https://en.wikipedia.org/wiki/Continuation" target="_blank" rel="noopener">维基百科</a>的解释，continuation其实就是某个程序在运行时的状态。</p>
+<blockquote>
+<p>In computer science and computer programming, a continuation is an abstract representation of the control state of a computer program.</p>
+</blockquote>
+<p>更具体一点说，continuation就是某种数据结构可以用来代表某个运行的进程在某个时段的状态，而这个数据结果可以被计算机语言识别和利用。比如，exception、generator、coroutine这些高级（high level）的运行时<strong>控制结构</strong>都是基于continuation。如果continuation被当作一类（first class）对象时，那么对于某个运行的进程，可以随时保存任意时间的运行状态（程序的state），然后被OS切换（yield）后，随时可以返回之前的任意状态。</p>
+<p>continuation跟其他的所有的控制结构都不同，但是跟thread比较类似，可以用来彼此互相实现（比如用thread来实现continuation，或者用continuation实现thread，感觉这里用模拟更恰当）。</p>
+<p>continuation的定义比thread更加精确，所以在一些thread不能实现的地方，continuation都可以实现。</p>
+<p>continuation更加类似于拥有参数的goto，这个参数是用来控制跳转的计算的。这里跟function call的跳转不一样，continuation可以跳转回去原初计算暂停的地方。</p>
+<p>在Scheme中，一个理想的尾递归是所有都使用Continuation Pass Style。</p>
+<a id="more"></a>
+<hr>
+<h4 id="Continuations-are-snapshots-of-threads"><a href="#Continuations-are-snapshots-of-threads" class="headerlink" title="Continuations are snapshots of threads."></a>Continuations are snapshots of threads.</h4><p>Continuations are inactive multiply-resumable threads. So unlike normal threads, resuming a continuation doesn’t use up its power to execute that particular piece of code.</p>
+<h4 id="Facts-about-continuations"><a href="#Facts-about-continuations" class="headerlink" title="Facts about continuations"></a>Facts about continuations</h4><p>Continuations are used in DenotationalSemantics to describe the semantics of control mechanisms and of control commands such as jumps.<br>Depending on the implementation, typically “continuations over threads”, it may not be possible to call a continuation from outside of the process where it’s defined. This is a limitation of the implementation and not of the concept.<br>Some languages like Scheme [SchemeLanguage] or SML [SmlLanguage] allow you to grab the current continuation as a first-class object (see CallWithCurrentContinuation).</p>
+<p>IIRC it’s just SML/NJ that allows you to use FirstClass reified continuations And IconLanguage. (Trivial to do in OriginalIoLanguage. – Walt RorieBaety?)</p>
+<h4 id="Issues"><a href="#Issues" class="headerlink" title="Issues"></a>Issues</h4><p>What is the source of the name “continuation”? Is it the paper ActorsAndContinuousFunctionals, or is there an earlier source?<br>What would be the downsides if continuations were made accessible from outside of a process? The upside is obvious, a complete merging of the concepts of threads and continuations. Are there any downsides?</p>
+<p>In what way, if any, are continuations different from threads which are automatically forked when called? If there isn’t any difference then threads are continuations and continuations are threads. There is a symmetry between them that is hidden by some ugly implementation details. For example: you typically can’t arbitrarily unwind the stack of a thread but you can a continuation; conversely, you can’t call a continuation from outside its process like you can with a thread.</p>
+<p>CallWithCurrentContinuation in thread form is this:</p>
+<ul>
+<li>fork current thread</li>
+<li>send message to daughter thread, passing self</li>
+<li>block self</li>
+</ul>
+<h3 id="Couroutinue"><a href="#Couroutinue" class="headerlink" title="Couroutinue"></a>Couroutinue</h3><p>If you understand continuations (see ContinuationExplanation) then CoRoutines are just two or more continuations that call each other whenever they block, end, or just feel like being polite.</p>
+<p>UseClosuresNotEnumerations explains itself at one point like so:<br>By turning the body of the iteration into an object, it opens possibilities for reuse.</p>
+<p>I’ve just been learning about continuations from reading up on StacklessPython. Someone explained a continuation to me as the state a function is in when it is about to pass execution elsewhere.</p>
+<p>The closest concept I have is the task-switching in a multi-tasking single processor system, you save and restore states.</p>
+<p>This implies to me that a continuation as referred to on UseClosuresNotEnumerations somewhat like a loop, but is instead a ‘function state’ object with the arguments being reassignable.<br>Are closures and continuations identical? Am I confused?</p>
+<p>See LexicalClosure</p>
+<p>Closures and continuations are not identical, but are often seen together. Some confusion can occur because the things used as continuations often are closures.<br>A closure is basically a function with some variables that persist between function calls. For example, in SchemeLanguage, you can do this:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(define counter</span><br><span class="line">  (let ((i 0))</span><br><span class="line">    (lambda ()</span><br><span class="line">      (set! i (+ i 1))</span><br><span class="line">      i)))</span><br></pre></td></tr></table></figure>
+<p>In PerlLanguage, the equivalent code would be:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> sub make_counter &#123;</span><br><span class="line">my $i = 0;</span><br><span class="line">sub &#123; $i++; $i &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> *counter = make_counter();</span><br></pre></td></tr></table></figure>
+<p>In both of these cases, thanks to lexical scope, i is only accessible through the counter function, but since i is not actually a local variable of the function, its value persists between function calls.</p>
+<p>A common space optimisation in FunctionalProgramming systems is to re-write recursive procedures so that there is at some point a continuation containing only the recursive call, then the same context can be used for each of the recursive calls until the base case occurs. (See TailCallOptimization.)<br>So how do you keep the program from doing the exact same thing (and thus getting into an infinite loop) every time the continuation is called? Somehow the state of the program has to be different on subsequent calls or you’ll never get any work done.</p>
+<p>In the recursive re-write the values in the argument list in each recursive call have to converge, in some sense, toward the base case, but that is true before the re-write, too, which is a refactoring in a very strong sense. In the case of coroutines the processes that execute between the procedures handing off to each other will do stuff thas causes changes outside the continuations but visible to them.</p>
+<p>Windows 3.1 was a non-preemptive (“cooperative”) task switching system, but it hardly counts as a system of coroutines because each process could only contain a single routine. Theoretically you could spawn one process from another and then have the two communicate like coroutines, but it generally wouldn’t be worth the trouble. In Windows NT the ability to create cooperative threads was retained (created?), and these were called Fibers.</p>
+<p>In a typical C/Java thread-based system, each thread has a distinct stack. A new thread always starts with a brand new stack, and stacks never mix. So the system can be considered to be a set of stacks. As I understand it, in lisp-like systems that supports closures and continuations, you have a tree instead of a stack, where each node is equivalent to a stack frame. A function call adds a new node to a tree as a child of whatever is the current stack frame. Returning from a function call moves to a parent node without necessarily deleting anything (the frame you left may or may not be garbage collected, depending on whether you keep a pointer to it). Continuations allow you to save pointers to other nodes in the tree and jump around to them arbitrarily, and the result is sort of like cooperative multithreading, except for the shared stack frames and the fact that you can continue from the same place more than once (I think?)</p>
+<p>I haven’t really used continuations because they’re hard to think about compared to ordinary threads, which are no picnic either. It seems like you lose a lot of guarantees that a strict stack-based system gives you. Weird things happen like functions getting called once and returning multiple times - what does this do to things like exceptions and finally clauses?    It causes a world of pain for the programmer who tries to implement a language with both continuations and exceptions. –sg I tend to think that tree-like data structures really ought to be data, not code. Then again on Unix we are used to the fork() call and that can be difficult to understand too.</p>
+<p>On a slightly related note, see the discussion of exception handling in <a href="http://www.advogato.org/article/48.html" target="_blank" rel="noopener">http://www.advogato.org/article/48.html</a></p>
+<p>A world of pain? I’m not so sure. It just means that instead of a single return-address continuation, your typical function will have both a normal-return and exceptional-return continuation. I think it even makes try statements easier to sort out, since catch ends up looking like a closure wrapping the exceptional-return continuation, and finally wraps both the normal and exceptional returns.</p>
+<p>In the March issue of DrDobbsJournal, there is an article about implementing cross-platform general coroutines in C++:</p>
+<p>CROSS-PLATFORM COROUTINES IN C++ by George F. Frazier. Coroutines are a natural solution to parsing problems used by AssemblyLanguage programmers. George presents a cross-platform coroutine technique for C++. Additional resources include cppco.txt (listings - <a href="http://www.ddj.com/ftp/2001/2001_03/cppco.txt" target="_blank" rel="noopener">http://www.ddj.com/ftp/2001/2001_03/cppco.txt</a> ) and cppco.zip (source code).<br>The example code that shows one important usage of coroutines is about OddWordProblem which is attributed to EwDijkstra 1972 (the only webpage that I could find from search engines was <a href="http://www.modulaware.com/mdlt53.htm" target="_blank" rel="noopener">http://www.modulaware.com/mdlt53.htm</a>) – JuneKim<br>I (DavidPiepgrass) have also written an article on coroutines, with included (and essentially portable) C++ code, here: <a href="http://qdl.sourceforge.net/coroutines.html" target="_blank" rel="noopener">http://qdl.sourceforge.net/coroutines.html</a> – it is somewhat of a basic article, because regrettably I don’t actually know any advanced uses of coroutines and continuations myself. I’ve had a really hard time learning about these things because most authors insist on expressing their ideas in Scheme or LISP or some other language I don’t know (and want to learn but can’t because the way it is explained just never matches the way my brain works, I guess). Why not explain these concepts in English, with Stackless Python as a fallback?. I fear that as long as these concepts are explained and promoted in unpopular languages, they will remain unpopular themselves.</p>
+<p>Because StacklessPython does not have continuations anymore. They seem to have been removed due to being too powerful for python or too hard to explain (not in the sense of python being a dumb language, but because they break the OnlyOneWayToDoIt? rule). Here is a text that you may find interesting, it is ruby but is similar enough to python to be understandable: <a href="http://mikael.phubuh.org/Media/Writing/Continuations/" target="_blank" rel="noopener">http://mikael.phubuh.org/Media/Writing/Continuations/</a> and about coroutines: <a href="http://www.sidhe.org/~dan/blog/archives/000178.html" target="_blank" rel="noopener">http://www.sidhe.org/~dan/blog/archives/000178.html</a></p>
+<p>You might also like to look at <a href="http://www.jpaulmorrison.com/cgi-bin/wiki.pl?TelegramProblem" target="_blank" rel="noopener">http://www.jpaulmorrison.com/cgi-bin/wiki.pl?TelegramProblem</a>. The FlowBasedProgramming solution to this involves 4 threads that are essentially coroutines. Actually you can very simply convert this to a solution to the OddWordProblem by adding one more component (to reverse every other word) into the middle of the diagram!</p>
+<p>I also built a coroutine implementation on C++ using multiple stacks and longjmp, called THREADS. It is available, if anyone wants to try it out, at <a href="http://www.jpaulmorrison.com/fbp/threads.zip" target="_blank" rel="noopener">http://www.jpaulmorrison.com/fbp/threads.zip</a>. It is described in <a href="http://www.jpaulmorrison.com/fbp/threads.htm" target="_blank" rel="noopener">http://www.jpaulmorrison.com/fbp/threads.htm</a>. Some assembly may be required. </p>
+<p>The Win32 operating system supports a feature called “fibers”:</p>
+<p>A fiber is a unit of execution that must be manually scheduled by the application. Fibers run in the context of the threads that schedule them. Each thread can schedule multiple fibers. You schedule a fiber by switching to it from another fiber. The system still schedules threads to run. When a thread running fibers is preempted, its currently running fiber is preempted. The fiber runs when its thread runs. A fiber can use fiber local storage (FLS) to create a unique copy of a variable for each fiber. If no fiber switching occurs, FLS acts exactly the same as thread local storage (TLS).</p>
+<p>The SwitchToFiber?() API function is very similar to the “yield” keyword discussed above.<br><a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dllproc/base/fibers.asp" target="_blank" rel="noopener">http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dllproc/base/fibers.asp</a></p>
+<p>In fact, I just found an article about this:<br><a href="http://msdn.microsoft.com/msdnmag/issues/03/09/CoroutinesinNET/default.aspx" target="_blank" rel="noopener">http://msdn.microsoft.com/msdnmag/issues/03/09/CoroutinesinNET/default.aspx</a></p>
+<p>POSIX has a set of functions that can be used in a similar way: setcontext, getcontext, swapcontext, and makecontext.</p>
+<p>A new use for continuations and cothreads in general seems to be that of doing web pages flow control. In particular, the classic event-driven MVC pattern has difficulty dealing with the inevitability of users doing silly things like duplicating a page and continuing down two different paths, or going back and forwards with their browser buttons. I’m pretty new to this, but as I understand it, the idea to to have the web processing as one coroutine, and the user as the other. Whenever the web process needs input, it “yields” by giving the browser/user a webpage, which has a form, or a link, with an embedded continuation id, which points to a continuations repository on the server side.</p>
+<p>There is a project done by Apache which works in this fashion, though I believe they use some funky java-rewriting and custom implementation of javascript to achieve this.<br><a href="http://www-106.ibm.com/developerworks/library/j-contin.html" target="_blank" rel="noopener">http://www-106.ibm.com/developerworks/library/j-contin.html</a></p>
+<p>I have recently done something like this in PhpLanguage, however, it’s not quite the same natural syntax that is in the above link.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2016/10/09/Continuation-vs-Coroutine-vs-Thread/" data-id="cjrjycrsk00kfbatiorysdgq5" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Continuation/">Continuation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Coroutine/">Coroutine</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Thread/">Thread</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/10/10/Microservice-in-Flask/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Microservice in Flask
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/10/08/SWAGGER-AIN-T-REST/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SWAGGER AIN&#39;T REST</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Innards/">内核</a><span class="category-list-count">48</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">函数编程</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dynamic-Programming/">动态编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Fun/">好玩</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">安全</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">安卓</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Recommend/">推荐</a><span class="category-list-count">57</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">数学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Solutions/">方案</a><span class="category-list-count">64</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">机器学习</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">程序语言</a><span class="category-list-count">71</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Notes/">笔记</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algo/">算法</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Automation/">自动化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerVision/">计算机视觉</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Review/">评测</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">面试</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">49</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Meng Jue (M)<br>
+    </div>
+  </div>
+</footer>
+
+    
+
+
+
+<script src="/js/jquery-2.2.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

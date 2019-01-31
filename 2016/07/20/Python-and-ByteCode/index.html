@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Python and ByteCode | Make Fun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天在europython 2016看到的一个好看的印度人的演讲，觉得很有意思，记录下来。 作者：Anjana Valill (vakila.github.io) 问题：Why does python code run faster in a function? (http://stackoverflow.com/questions/11241523/why-does-python-code-ru">
+<meta name="keywords" content="ByteCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python and ByteCode">
+<meta property="og:url" content="http://m.imf.cc/2016/07/20/Python-and-ByteCode/index.html">
+<meta property="og:site_name" content="Make Fun">
+<meta property="og:description" content="今天在europython 2016看到的一个好看的印度人的演讲，觉得很有意思，记录下来。 作者：Anjana Valill (vakila.github.io) 问题：Why does python code run faster in a function? (http://stackoverflow.com/questions/11241523/why-does-python-code-ru">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-31T01:39:44.276Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python and ByteCode">
+<meta name="twitter:description" content="今天在europython 2016看到的一个好看的印度人的演讲，觉得很有意思，记录下来。 作者：Anjana Valill (vakila.github.io) 问题：Why does python code run faster in a function? (http://stackoverflow.com/questions/11241523/why-does-python-code-ru">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/open-fonts/css/open-sans.css">
+  <link rel="stylesheet" href="/open-fonts/css/share-tech-mono.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><i class="logo"></i><span class="site-title">Make Fun</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div class="profile" id="profile-nav">
+          <a id="profile-anchor" href="javascript:;"><img class="avatar" src="/css/images/avatar.png"><i class="fa fa-caret-down"></i></a>
+        </div>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+      
+        <td><a class="main-nav-link" href="/">Home</a></td>
+      
+        <td><a class="main-nav-link" href="/archives">Archives</a></td>
+      
+        <td><a class="main-nav-link" href="/about">About</a></td>
+      
+      <td>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </td>
+      </tr>
+    </table>
+  </div>
+  
+</header>
+    <div class="outer">
+      <aside id="profile">
+  <div class="inner profile-inner">
+  	<div class="base-info profile-block">
+		  <img id="avatar" src="/css/images/avatar.png">
+      <h2 id="name">Meng Jue (M)</h2>
+      <h3 id="title">Strict Developer &amp; Funny Player</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Shanghai, China</span>
+      <a id="follow" href="https://github.com/MengjueM">关注我</a>
+  	</div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        319
+        <span>文章</span>
+      </div>
+      <div class="article-info-block">
+        236
+        <span>标签</span>
+      </div>
+    </div>
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+        
+          <td><a href="http://github.com/MengjueM" title="github"><i class="fa fa-github"></i></a></td>
+        
+          <td><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></td>
+        
+          <td><a href="#" title="facebook"><i class="fa fa-facebook"></i></a></td>
+        
+          <td><a href="#" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
+        
+          <td><a href="/atom.xml" title="rss"><i class="fa fa-rss"></i></a></td>
+        
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+      <section id="main"><article id="post-Python-and-ByteCode" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python and ByteCode
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2016/07/20/Python-and-ByteCode/">
+    <time datetime="2016-07-20T14:48:48.000Z" itemprop="datePublished">2016-07-20</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Coding/">程序语言</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天在europython 2016看到的一个好看的印度人的演讲，觉得很有意思，记录下来。</p>
+<p>作者：Anjana Valill (vakila.github.io)</p>
+<p>问题：Why does python code run faster in a function? (<a href="http://stackoverflow.com/questions/11241523/why-does-python-code-run-faster-in-a-function" target="_blank" rel="noopener">http://stackoverflow.com/questions/11241523/why-does-python-code-run-faster-in-a-function</a>)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1 # outside_fn.py                     # inside_fn.py</span><br><span class="line">for i in range(10**8):                def run_loop():</span><br><span class="line">  i                                     for i in range(10**8):</span><br><span class="line">                                          i</span><br><span class="line">$ time python3 outside_fn.py          $ time python3 inside_fun.py</span><br><span class="line">real        0m9.185s                  real          0m5.738s</span><br><span class="line">user        0m9.104s                  user          0m5.634s</span><br><span class="line">sys         0m0.048s                  sys           0m0.055s</span><br></pre></td></tr></table></figure>
+<h3 id="The-awesome-stuff-your-program-does"><a href="#The-awesome-stuff-your-program-does" class="headerlink" title="The awesome stuff your program does"></a>The awesome stuff your program does</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">source code</span><br><span class="line">      |</span><br><span class="line">      ~</span><br><span class="line">compiler</span><br><span class="line">=&gt; parse tree &gt; abstract syntax tree &gt; control flow graph =&gt;</span><br><span class="line">      |</span><br><span class="line">      ~</span><br><span class="line">byte code</span><br><span class="line">      |</span><br><span class="line">      ~</span><br><span class="line">interpreter</span><br><span class="line">virtual machine performs operations on a stack of objects</span><br></pre></td></tr></table></figure>
+<h3 id="What-is-byte-code"><a href="#What-is-byte-code" class="headerlink" title="What is byte code?"></a>What is byte code?</h3><p>An intermediate representation of your program.</p>
+<h3 id="What-the-interpreter-“sees”-when-it-run-your-program"><a href="#What-the-interpreter-“sees”-when-it-run-your-program" class="headerlink" title="What the interpreter “sees” when it run your program"></a>What the interpreter “sees” when it run your program</h3><p>Machine code for a virtual machine (the interpreter)</p>
+<p>A series of instructions for stack operations.</p>
+<p>Cached as .pyc file.</p>
+<h3 id="How-can-we-read-it"><a href="#How-can-we-read-it" class="headerlink" title="How can we read it"></a>How can we read it</h3><p>dis: bytecode disassembler</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; def hello():</span><br><span class="line">      return &apos;hello&apos;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; import dis</span><br><span class="line">&gt;&gt;&gt; dis.dis(hello)</span><br><span class="line"></span><br><span class="line">2       0 LOAD_CONST                1 (&apos;hello&apos;)</span><br><span class="line">        3 RETURN_VALUE</span><br></pre></td></tr></table></figure>
+<h3 id="What-does-it-all-mean"><a href="#What-does-it-all-mean" class="headerlink" title="What does it all mean"></a>What does it all mean</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">                                              argument value  </span><br><span class="line">                                                    |</span><br><span class="line">                                        arg index   |</span><br><span class="line">                                             |      |</span><br><span class="line">                operation name               |      |</span><br><span class="line">                        |                    |      |</span><br><span class="line">line #                  |                    |      |</span><br><span class="line"> |                      |                    |      |</span><br><span class="line"> |           offset     |                    |      |</span><br><span class="line"> |               |      |                    |      |</span><br><span class="line"> ~               ~      ~                    ~      ~</span><br><span class="line"> 2               0 LOAD_CONST                1 (&apos;hello&apos;)</span><br></pre></td></tr></table></figure>
+<h3 id="Sample-Operations"><a href="#Sample-Operations" class="headerlink" title="Sample Operations"></a>Sample Operations</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">LOAD_CONST(c)           pushes c onto top of stack (TOS)</span><br><span class="line">BINARY_ADD              pops &amp; adds top 2 items, result becomes TOS</span><br><span class="line">CALL_FUNCTIONS(a)       call function with arguments from stack</span><br><span class="line">                        a indicates # of positional &amp; keyword args</span><br></pre></td></tr></table></figure>
+<h3 id="What-can-we-dis"><a href="#What-can-we-dis" class="headerlink" title="What can we dis"></a>What can we dis</h3><p>functions:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">In [1]: def add(spam, eggs):</span><br><span class="line">   ...:     return spam + eggs</span><br><span class="line">   ...:</span><br><span class="line"></span><br><span class="line">In [3]: import dis</span><br><span class="line"></span><br><span class="line">In [4]: dis.dis(add)</span><br><span class="line"> 2           0 LOAD_FAST                0 (spam)</span><br><span class="line">             3 LOAD_FAST                1 (eggs)</span><br><span class="line">             6 BINARY_ADD</span><br><span class="line">             7 RETURN_VALUE</span><br></pre></td></tr></table></figure>
+<p>classes:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">In [5]: class Parrot:</span><br><span class="line">   ...:     def __init__(self):</span><br><span class="line">   ...:         self.kind = &quot;Norwegian Blue&quot;</span><br><span class="line">   ...:     def is_dead(self):</span><br><span class="line">   ...:         return True</span><br><span class="line">   ...:</span><br><span class="line"></span><br><span class="line">In [6]: dis.dis(Parrot)</span><br><span class="line">Disassembly of __init__:</span><br><span class="line">  3           0 LOAD_CONST               1 (&apos;Norwegian Blue&apos;)</span><br><span class="line">              3 LOAD_FAST                0 (self)</span><br><span class="line">              6 STORE_ATTR               0 (kind)</span><br><span class="line">              9 LOAD_CONST               0 (None)</span><br><span class="line">             12 RETURN_VALUE</span><br><span class="line"></span><br><span class="line">Disassembly of is_dead:</span><br><span class="line">  5           0 LOAD_GLOBAL              0 (True)</span><br><span class="line">              3 RETURN_VALUE</span><br></pre></td></tr></table></figure>
+<p>code string (3.2+)                             </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; import dis</span><br><span class="line">&gt;&gt;&gt; dis.dis(&quot;spam, eggs = &apos;spam&apos;, &apos;eggs&apos;&quot;)</span><br><span class="line">  1           0 LOAD_CONST               3 ((&apos;spam&apos;, &apos;eggs&apos;))</span><br><span class="line">              3 UNPACK_SEQUENCE          2</span><br><span class="line">              6 STORE_NAME               0 (spam)</span><br><span class="line">              9 STORE_NAME               1 (eggs)</span><br><span class="line">             12 LOAD_CONST               2 (None)</span><br><span class="line">             15 RETURN_VALUE</span><br></pre></td></tr></table></figure>
+<p>module</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$ python -m dis knights.py</span><br><span class="line">  1           0 LOAD_CONST               0 (&apos;print(&quot;Ni!&quot;)&apos;)</span><br><span class="line">              3 STORE_NAME               0 (__doc__)</span><br><span class="line">              6 LOAD_CONST               1 (None)</span><br><span class="line">              9 RETURN_VALUE</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># knights.py</span><br><span class="line">print(&quot;Ni!&quot;)</span><br><span class="line">def is_fresh_wound():</span><br><span class="line">   return True</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; import knights</span><br><span class="line">Ni!</span><br><span class="line">&gt;&gt;&gt; import dis</span><br><span class="line">&gt;&gt;&gt; dis.dis(knights)</span><br><span class="line">Disassembly of is_fresh_wound:</span><br><span class="line">  3           0 LOAD_GLOBAL              0 (True)</span><br><span class="line">              3 RETURN_VALUE</span><br></pre></td></tr></table></figure>
+<p>last traceback</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; print(spam)</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">NameError: name &apos;spam&apos; is not defined</span><br><span class="line">&gt;&gt;&gt; import dis</span><br><span class="line">&gt;&gt;&gt; dis.dis()</span><br><span class="line">  1           0 LOAD_NAME                0 (print)</span><br><span class="line">    --&gt;       3 LOAD_NAME                1 (spam)</span><br><span class="line">              6 CALL_FUNCTION            1 (1 positional, 0 keyword pair)</span><br><span class="line">              9 PRINT_EXPR</span><br><span class="line">             10 LOAD_CONST               0 (None)</span><br><span class="line">             13 RETURN_VALUE</span><br></pre></td></tr></table></figure>
+<h3 id="Why-do-we-care"><a href="#Why-do-we-care" class="headerlink" title="Why do we care"></a>Why do we care</h3><p>debugging</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; ham/eggs + ham/spam</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;</span><br><span class="line">NameError: name &apos;ham&apos; is not defined</span><br><span class="line">&gt;&gt;&gt; dis.dis()</span><br><span class="line">  1 --&gt;       0 LOAD_NAME                0 (ham)</span><br><span class="line">              3 LOAD_NAME                1 (eggs)</span><br><span class="line">              6 BINARY_TRUE_DIVIDE</span><br><span class="line">              7 LOAD_NAME                0 (ham)</span><br><span class="line">             10 LOAD_NAME                2 (spam)</span><br><span class="line">             13 BINARY_TRUE_DIVIDE</span><br><span class="line">             14 BINARY_ADD</span><br><span class="line">             15 PRINT_EXPR</span><br><span class="line">             16 LOAD_CONST               0 (None)</span><br><span class="line">             19 RETURN_VALUE</span><br></pre></td></tr></table></figure>
+<h3 id="Solving-puzzles"><a href="#Solving-puzzles" class="headerlink" title="Solving puzzles"></a>Solving puzzles</h3><p>outside_fn.py             </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; outside = open(&apos;outside_fn.py&apos;).read()</span><br><span class="line">&gt;&gt;&gt; import dis</span><br><span class="line">&gt;&gt;&gt; dis.dis(outside)</span><br><span class="line">  1           0 SETUP_LOOP              24 (to 27)</span><br><span class="line">              3 LOAD_NAME                0 (range)</span><br><span class="line">              6 LOAD_CONST               3 (100000000)</span><br><span class="line">              9 CALL_FUNCTION            1 (1 positional, 0 keyword pair)</span><br><span class="line">             12 GET_ITER</span><br><span class="line">        &gt;&gt;   13 FOR_ITER                10 (to 26)</span><br><span class="line">             16 STORE_NAME               1 (i)</span><br><span class="line"></span><br><span class="line">  2          19 LOAD_NAME                1 (i)</span><br><span class="line">             22 POP_TOP</span><br><span class="line">             23 JUMP_ABSOLUTE           13</span><br><span class="line">        &gt;&gt;   26 POP_BLOCK</span><br><span class="line">        &gt;&gt;   27 LOAD_CONST               2 (None)</span><br><span class="line">             30 RETURN_VALUE</span><br></pre></td></tr></table></figure>
+<p>inside_fn.py</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt;&gt;&gt; import dis</span><br><span class="line">&gt;&gt;&gt; inside = open(&apos;inside_fn.py&apos;).read()</span><br><span class="line">&gt;&gt;&gt; dis.dis(inside)</span><br><span class="line">  1           0 LOAD_CONST               0 (&lt;code object run_loop at 0x010F6DE0, file &quot;&lt;dis&gt;&quot;, line 1&gt;)</span><br><span class="line">              3 LOAD_CONST               1 (&apos;run_loop&apos;)</span><br><span class="line">              6 MAKE_FUNCTION            0</span><br><span class="line">              9 STORE_NAME               0 (run_loop)</span><br><span class="line"></span><br><span class="line">  4          12 LOAD_NAME                0 (run_loop)</span><br><span class="line">             15 CALL_FUNCTION            0 (0 positional, 0 keyword pair)</span><br><span class="line">             18 POP_TOP</span><br><span class="line">             19 LOAD_CONST               2 (None)</span><br><span class="line">             22 RETURN_VALUE</span><br></pre></td></tr></table></figure>
+<h3 id="Investigate-the-bytecode-diff"><a href="#Investigate-the-bytecode-diff" class="headerlink" title="Investigate the bytecode diff"></a>Investigate the bytecode diff</h3><p>STORE_NAME(namei)                          </p>
+<p>Implement name = TOS. namei is the index of name in the attribute co_names of<br>the code object.</p>
+<p>LOAD_NAME(namei)</p>
+<p>Pushes the value associated with co_names[namei] onto the stack.</p>
+<p>STORE_FAST(var_num)</p>
+<p>Stores TOS into the local co_varnames[var_num]</p>
+<p>LOAD_FAST(var_num)</p>
+<p>Push a reference to the local co_varnames[var_num] onto the stack</p>
+<h3 id="Digg-the-deep"><a href="#Digg-the-deep" class="headerlink" title="Digg the deep"></a>Digg the deep</h3><p>ceval.c: the heart of the beast</p>
+<p>A.Kaptur: “A 1500 (!!) line switch statement powers your Python”<br>(http:aksptur.com/talks/)</p>
+<ul>
+<li>LOAD_FAST (#11368) is ~10 lines, invovles fast locals lookup</li>
+<li>LOAD_NAME (#12353) is ~50 lines, invovles slow dict lookup</li>
+<li>prediction (#11000) makes FOR_ITER + STORE_FAST even faster</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2016/07/20/Python-and-ByteCode/" data-id="cjrjycru400mobatiq05zeamo" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ByteCode/">ByteCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/22/riko-a-new-processor-for-stream-of-data/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Riko: A new processor for stream of data
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/12/Use-Docker-to-automate-testing/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Use Docker to automate testing</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Innards/">内核</a><span class="category-list-count">48</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">函数编程</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dynamic-Programming/">动态编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Fun/">好玩</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">安全</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">安卓</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Recommend/">推荐</a><span class="category-list-count">57</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">数学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Solutions/">方案</a><span class="category-list-count">64</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">机器学习</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">程序语言</a><span class="category-list-count">71</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Notes/">笔记</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algo/">算法</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Automation/">自动化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerVision/">计算机视觉</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Review/">评测</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">面试</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">49</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Meng Jue (M)<br>
+    </div>
+  </div>
+</footer>
+
+    
+
+
+
+<script src="/js/jquery-2.2.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

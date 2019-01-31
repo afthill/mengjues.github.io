@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Python ByteCode in Details | Make Fun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="First Look of bytecode我们先来看一个代码： class A:  def __init__(self):    pass  def __repr__(self):    return &amp;apos;A()&amp;apos;a = A()print a 很容易理解，首先声明一个old style的类A，里头声明了2个方法，然后把A初始化成对象并赋值给a，最后打印a对象。 我们可以把这段代">
+<meta name="keywords" content="ByteCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python ByteCode in Details">
+<meta property="og:url" content="http://m.imf.cc/2015/04/22/Python-ByteCode-Internals/index.html">
+<meta property="og:site_name" content="Make Fun">
+<meta property="og:description" content="First Look of bytecode我们先来看一个代码： class A:  def __init__(self):    pass  def __repr__(self):    return &amp;apos;A()&amp;apos;a = A()print a 很容易理解，首先声明一个old style的类A，里头声明了2个方法，然后把A初始化成对象并赋值给a，最后打印a对象。 我们可以把这段代">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-31T01:39:44.272Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python ByteCode in Details">
+<meta name="twitter:description" content="First Look of bytecode我们先来看一个代码： class A:  def __init__(self):    pass  def __repr__(self):    return &amp;apos;A()&amp;apos;a = A()print a 很容易理解，首先声明一个old style的类A，里头声明了2个方法，然后把A初始化成对象并赋值给a，最后打印a对象。 我们可以把这段代">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/open-fonts/css/open-sans.css">
+  <link rel="stylesheet" href="/open-fonts/css/share-tech-mono.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><i class="logo"></i><span class="site-title">Make Fun</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div class="profile" id="profile-nav">
+          <a id="profile-anchor" href="javascript:;"><img class="avatar" src="/css/images/avatar.png"><i class="fa fa-caret-down"></i></a>
+        </div>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+      
+        <td><a class="main-nav-link" href="/">Home</a></td>
+      
+        <td><a class="main-nav-link" href="/archives">Archives</a></td>
+      
+        <td><a class="main-nav-link" href="/about">About</a></td>
+      
+      <td>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </td>
+      </tr>
+    </table>
+  </div>
+  
+</header>
+    <div class="outer">
+      <aside id="profile">
+  <div class="inner profile-inner">
+  	<div class="base-info profile-block">
+		  <img id="avatar" src="/css/images/avatar.png">
+      <h2 id="name">Meng Jue (M)</h2>
+      <h3 id="title">Strict Developer &amp; Funny Player</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Shanghai, China</span>
+      <a id="follow" href="https://github.com/MengjueM">关注我</a>
+  	</div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        319
+        <span>文章</span>
+      </div>
+      <div class="article-info-block">
+        236
+        <span>标签</span>
+      </div>
+    </div>
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+        
+          <td><a href="http://github.com/MengjueM" title="github"><i class="fa fa-github"></i></a></td>
+        
+          <td><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></td>
+        
+          <td><a href="#" title="facebook"><i class="fa fa-facebook"></i></a></td>
+        
+          <td><a href="#" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
+        
+          <td><a href="/atom.xml" title="rss"><i class="fa fa-rss"></i></a></td>
+        
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+      <section id="main"><article id="post-Python-ByteCode-Internals" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Python ByteCode in Details
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/04/22/Python-ByteCode-Internals/">
+    <time datetime="2015-04-22T09:22:00.000Z" itemprop="datePublished">2015-04-22</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Innards/">内核</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="First-Look-of-bytecode"><a href="#First-Look-of-bytecode" class="headerlink" title="First Look of bytecode"></a>First Look of bytecode</h3><p>我们先来看一个代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">class A:</span><br><span class="line">  def __init__(self):</span><br><span class="line">    pass</span><br><span class="line">  def __repr__(self):</span><br><span class="line">    return &apos;A()&apos;</span><br><span class="line">a = A()</span><br><span class="line">print a</span><br></pre></td></tr></table></figure>
+<p>很容易理解，首先声明一个old style的类A，里头声明了2个方法，然后把A初始化成对象并赋值给a，最后打印a对象。</p>
+<p>我们可以把这段代码编译成python code对象：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">co2 = compile(&quot;&quot;&quot;class A:</span><br><span class="line">  def __init__(self):</span><br><span class="line">    pass</span><br><span class="line">  def __repr__(self):</span><br><span class="line">    return &apos;A()&apos;</span><br><span class="line">a = A()</span><br><span class="line">print a&quot;&quot;&quot;, &quot;class-A-input&quot;, &quot;exec&quot;)</span><br><span class="line"></span><br><span class="line">co2</span><br><span class="line">Out[114]: &lt;code object &lt;module&gt; at 00000000040B8630, file &quot;class-A-input&quot;, line 1&gt;</span><br></pre></td></tr></table></figure>
+<p>然后我们使用内置的dis模块把生成的co2对象显示为opcode：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import dis</span><br><span class="line"></span><br><span class="line">dis.dis(co2)</span><br><span class="line"></span><br><span class="line">  1           0 LOAD_CONST               0 (&apos;A&apos;)</span><br><span class="line">              3 LOAD_CONST               3 (())</span><br><span class="line">              6 LOAD_CONST               1 (&lt;code object A at 00000000040B8530, file &quot;class-A-input&quot;, line 1&gt;)</span><br><span class="line">              9 MAKE_FUNCTION            0</span><br><span class="line">             12 CALL_FUNCTION            0</span><br><span class="line">             15 BUILD_CLASS         </span><br><span class="line">             16 STORE_NAME               0 (A)</span><br><span class="line"></span><br><span class="line">  6          19 LOAD_NAME                0 (A)</span><br><span class="line">             22 CALL_FUNCTION            0</span><br><span class="line">             25 STORE_NAME               1 (a)</span><br><span class="line"></span><br><span class="line">  7          28 LOAD_NAME                1 (a)</span><br><span class="line">             31 PRINT_ITEM          </span><br><span class="line">             32 PRINT_NEWLINE       </span><br><span class="line">             33 LOAD_CONST               2 (None)</span><br><span class="line">             36 RETURN_VALUE</span><br></pre></td></tr></table></figure>
+<p>以上就是在python编译好的bytecode，以便后面在python VM中运行。</p>
+<h4 id="ByteCode解析："><a href="#ByteCode解析：" class="headerlink" title="ByteCode解析："></a>ByteCode解析：</h4><ul>
+<li>最左边的一列（1， 6， 7）是源代码里的行号，比如1就代表的是第1行。</li>
+<li>第二列（0，3,6,9……36）表示的是OPCODE表的index</li>
+<li>第三列（LOAD_CONST，MAKE_FUNCTION）是具体的OPCODE，这个OPCODE只是用来帮助人类阅读用的，python VM执行的还是前面的index</li>
+<li>第四列（0,3,1）等指的是OPARGS的index，这个index不是从一个全局表里取的，而是基于前面的OPCODE<ul>
+<li>比如：<code>LOAD_CONST</code>是从<code>co_consts</code>中取，<code>LOAD_NAME</code>是从<code>co_conames</code>中取</li>
+</ul>
+</li>
+<li>第五列是OPARGS的辅助提示，只是用来帮助人类阅读</li>
+</ul>
+<h5 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h5><ol>
+<li><a href="http://security.coverity.com/blog/2014/Nov/understanding-python-bytecode.html" target="_blank" rel="noopener">http://security.coverity.com/blog/2014/Nov/understanding-python-bytecode.html</a></li>
+<li><a href="http://akaptur.com/blog/categories/python-internals/" target="_blank" rel="noopener">http://akaptur.com/blog/categories/python-internals/</a></li>
+<li><a href="http://eli.thegreenplace.net/tag/python-internals" target="_blank" rel="noopener">http://eli.thegreenplace.net/tag/python-internals</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/04/22/Python-ByteCode-Internals/" data-id="cjrjycrpl00eubatiqq36dyog" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ByteCode/">ByteCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/04/28/What-Is-Bytecode-Instrumentation/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ByteCode Instrumentation
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/04/22/Javascript-the-core/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">EMCA in details</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Innards/">内核</a><span class="category-list-count">48</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">函数编程</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dynamic-Programming/">动态编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Fun/">好玩</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">安全</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">安卓</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Recommend/">推荐</a><span class="category-list-count">57</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">数学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Solutions/">方案</a><span class="category-list-count">64</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">机器学习</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">程序语言</a><span class="category-list-count">71</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Notes/">笔记</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algo/">算法</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Automation/">自动化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerVision/">计算机视觉</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Review/">评测</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">面试</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">49</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Meng Jue (M)<br>
+    </div>
+  </div>
+</footer>
+
+    
+
+
+
+<script src="/js/jquery-2.2.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

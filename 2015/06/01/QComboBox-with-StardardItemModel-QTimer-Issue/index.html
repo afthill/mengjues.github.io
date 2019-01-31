@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>复盘一个关于QComboBox的issue | Make Fun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="这个最近遇到的一个小问题，但是花了一天时间找到了答案，下面是详细复盘： 1. 先看一个最简单的示例：import sysfrom PyQt4.QtGui import *from PyQt4.QtCore import Qtif __name__ == &amp;quot;__main__&amp;quot;:    app = QApplication(sys.argv)    from PyQt4.QtGui">
+<meta name="keywords" content="PyQt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="复盘一个关于QComboBox的issue">
+<meta property="og:url" content="http://m.imf.cc/2015/06/01/QComboBox-with-StardardItemModel-QTimer-Issue/index.html">
+<meta property="og:site_name" content="Make Fun">
+<meta property="og:description" content="这个最近遇到的一个小问题，但是花了一天时间找到了答案，下面是详细复盘： 1. 先看一个最简单的示例：import sysfrom PyQt4.QtGui import *from PyQt4.QtCore import Qtif __name__ == &amp;quot;__main__&amp;quot;:    app = QApplication(sys.argv)    from PyQt4.QtGui">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-31T01:39:44.276Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="复盘一个关于QComboBox的issue">
+<meta name="twitter:description" content="这个最近遇到的一个小问题，但是花了一天时间找到了答案，下面是详细复盘： 1. 先看一个最简单的示例：import sysfrom PyQt4.QtGui import *from PyQt4.QtCore import Qtif __name__ == &amp;quot;__main__&amp;quot;:    app = QApplication(sys.argv)    from PyQt4.QtGui">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/open-fonts/css/open-sans.css">
+  <link rel="stylesheet" href="/open-fonts/css/share-tech-mono.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><i class="logo"></i><span class="site-title">Make Fun</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div class="profile" id="profile-nav">
+          <a id="profile-anchor" href="javascript:;"><img class="avatar" src="/css/images/avatar.png"><i class="fa fa-caret-down"></i></a>
+        </div>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+      
+        <td><a class="main-nav-link" href="/">Home</a></td>
+      
+        <td><a class="main-nav-link" href="/archives">Archives</a></td>
+      
+        <td><a class="main-nav-link" href="/about">About</a></td>
+      
+      <td>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </td>
+      </tr>
+    </table>
+  </div>
+  
+</header>
+    <div class="outer">
+      <aside id="profile">
+  <div class="inner profile-inner">
+  	<div class="base-info profile-block">
+		  <img id="avatar" src="/css/images/avatar.png">
+      <h2 id="name">Meng Jue (M)</h2>
+      <h3 id="title">Strict Developer &amp; Funny Player</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Shanghai, China</span>
+      <a id="follow" href="https://github.com/MengjueM">关注我</a>
+  	</div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        319
+        <span>文章</span>
+      </div>
+      <div class="article-info-block">
+        236
+        <span>标签</span>
+      </div>
+    </div>
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+        
+          <td><a href="http://github.com/MengjueM" title="github"><i class="fa fa-github"></i></a></td>
+        
+          <td><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></td>
+        
+          <td><a href="#" title="facebook"><i class="fa fa-facebook"></i></a></td>
+        
+          <td><a href="#" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
+        
+          <td><a href="/atom.xml" title="rss"><i class="fa fa-rss"></i></a></td>
+        
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+      <section id="main"><article id="post-QComboBox-with-StardardItemModel-QTimer-Issue" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      复盘一个关于QComboBox的issue
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/06/01/QComboBox-with-StardardItemModel-QTimer-Issue/">
+    <time datetime="2015-06-01T04:46:00.000Z" itemprop="datePublished">2015-06-01</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Coding/">程序语言</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这个最近遇到的一个小问题，但是花了一天时间找到了<a href="http://stackoverflow.com/questions/19887777/error-in-model-view-implemention-of-gui-in-pyqt" target="_blank" rel="noopener">答案</a>，下面是详细复盘：</p>
+<h3 id="1-先看一个最简单的示例："><a href="#1-先看一个最简单的示例：" class="headerlink" title="1. 先看一个最简单的示例："></a>1. 先看一个最简单的示例：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import sys</span><br><span class="line">from PyQt4.QtGui import *</span><br><span class="line">from PyQt4.QtCore import Qt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line"></span><br><span class="line">    from PyQt4.QtGui import QDialog</span><br><span class="line">    mywin = QDialog()</span><br><span class="line">    mywin.setMinimumSize(400, 400)</span><br><span class="line"></span><br><span class="line">    model = QStandardItemModel()</span><br><span class="line"></span><br><span class="line">    for i, word in enumerate([&apos;hola&apos;, &apos;adios&apos;, &apos;hello&apos;, &apos;good bye&apos;]):</span><br><span class="line">        item = QStandardItem(word)</span><br><span class="line">        model.setItem(i, 0, item)</span><br><span class="line"></span><br><span class="line">    combo = QComboBox(mywin)</span><br><span class="line">    combo.setModel(model)</span><br><span class="line">    bombo.setEditable(True)</span><br><span class="line">    mywin.show()</span><br><span class="line"></span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+<p>如果在<code>Python 2.7.9</code>以及<code>PyQt 4.11.3</code>下运行，则一定会出现如下的warning:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">QObject::startTimer: QTimer can only be used with threads started with QThread</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
+<p>不是什么大的问题，但是本着本人比较洁癖的心理习惯，还是想弄个明白。先仔细研究了QComboBox的<a href="http://doc.qt.io/qt-4.8/qcombobox.html" target="_blank" rel="noopener">文档</a>，没有发现什么端倪，也没有在使用QComboBox时有特别的使用习惯。然后我开始调整代码，看是怎么回事：</p>
+<h3 id="2-错误可以消失的代码："><a href="#2-错误可以消失的代码：" class="headerlink" title="2. 错误可以消失的代码："></a>2. 错误可以消失的代码：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import sys</span><br><span class="line">from PyQt4.QtGui import *</span><br><span class="line">from PyQt4.QtCore import Qt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line"></span><br><span class="line">    from PyQt4.QtGui import QDialog</span><br><span class="line">    mywin = QDialog()</span><br><span class="line">    mywin.setMinimumSize(400, 400)</span><br><span class="line"></span><br><span class="line">    model = QStandardItemModel()</span><br><span class="line"></span><br><span class="line">    for i, word in enumerate([&apos;hola&apos;, &apos;adios&apos;, &apos;hello&apos;, &apos;good bye&apos;]):</span><br><span class="line">        item = QStandardItem(word)</span><br><span class="line">        model.setItem(i, 0, item)</span><br><span class="line"></span><br><span class="line">    combo = QComboBox(mywin)</span><br><span class="line">    combo.setModel(model)</span><br><span class="line"></span><br><span class="line">    mywin.show()</span><br><span class="line"></span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+<p>如果仔细的比较两段代码，可以发现实际上是只把<code>combo.setEditable(True)</code>删除了。PyQt4种QComboBox的默认值是<code>setEditable(False)</code>，那这里的<code>setEditable(True)</code>就是问题的<code>root cause</code>了。</p>
+<h3 id="3-再看另外一段代码："><a href="#3-再看另外一段代码：" class="headerlink" title="3. 再看另外一段代码："></a>3. 再看另外一段代码：</h3><p>我们如果想使用和保留<code>setEditable(True)</code>，那么我们可以尝试不用PyQt的MVC模式，而直接在QComboBox里插入items，如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import sys</span><br><span class="line">from PyQt4.QtGui import *</span><br><span class="line">from PyQt4.QtCore import Qt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line"></span><br><span class="line">    from PyQt4.QtGui import QDialog</span><br><span class="line">    mywin = QDialog()</span><br><span class="line">    mywin.setMinimumSize(400, 400)</span><br><span class="line"></span><br><span class="line">    # model = QStandardItemModel()</span><br><span class="line">    #</span><br><span class="line">    # for i, word in enumerate([&apos;hola&apos;, &apos;adios&apos;, &apos;hello&apos;, &apos;good bye&apos;]):</span><br><span class="line">    #     item = QStandardItem(word)</span><br><span class="line">    #     model.setItem(i, 0, item)</span><br><span class="line"></span><br><span class="line">    combo = QComboBox(mywin)</span><br><span class="line">    combo.addItems([&apos;hola&apos;, &apos;adios&apos;, &apos;hello&apos;, &apos;good bye&apos;])</span><br><span class="line">    # combo.setModel(model)</span><br><span class="line"></span><br><span class="line">    mywin.show()</span><br><span class="line"></span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+<p>可以发现，没有什么问题，如果我们不使用model。</p>
+<h3 id="4-我们想使用MVC，而且也要使用QComboBox-setEditable-True"><a href="#4-我们想使用MVC，而且也要使用QComboBox-setEditable-True" class="headerlink" title="4. 我们想使用MVC，而且也要使用QComboBox.setEditable(True)"></a>4. 我们想使用MVC，而且也要使用<code>QComboBox.setEditable(True)</code></h3><p>我们使用前面三段的对比代码，可以知道，问题的根源在于PyQt的垃圾回收机制：</p>
+<ul>
+<li>PyQt是对Qt的python封装，PyQt的底层AWT（Abstract Widget Toolkit）实现是由Qt实现的</li>
+<li>Qt是由<code>C++</code>实现的</li>
+<li>PyQt的垃圾回收涉及两部分内容：<ul>
+<li>Python部分的垃圾回收</li>
+<li><code>C++</code>部分的垃圾回收</li>
+</ul>
+</li>
+</ul>
+<p>因此我们在外部使用Python创建的Model，需要显式(explicitly)地指定parent，以便底层的Qt可以正确取得它<br>的控制权。</p>
+<p>因此，要修复我们的示例就很简单了：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">import sys</span><br><span class="line">from PyQt4.QtGui import *</span><br><span class="line">from PyQt4.QtCore import Qt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line"></span><br><span class="line">    from PyQt4.QtGui import QDialog</span><br><span class="line">    mywin = QDialog()</span><br><span class="line">    mywin.setMinimumSize(400, 400)</span><br><span class="line">    combo = QComboBox(mywin)</span><br><span class="line"></span><br><span class="line">    model = QStandardItemModel(combo)</span><br><span class="line"></span><br><span class="line">    for i, word in enumerate([&apos;hola&apos;, &apos;adios&apos;, &apos;hello&apos;, &apos;good bye&apos;]):</span><br><span class="line">        item = QStandardItem(word)</span><br><span class="line">        model.setItem(i, 0, item)</span><br><span class="line"></span><br><span class="line">    combo.setModel(model)</span><br><span class="line"></span><br><span class="line">    mywin.show()</span><br><span class="line"></span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+<p>仔细比较前面的代码，我们可以看到改动点是<code>model = QStandardItemModel(combo)</code>，<br>这里显式的指定了combo控件对象作为model的父对象，然后Qt在资源回收时，就能确定<br>正确的资源回收顺序，而不会导致开头的错误出现。</p>
+<h3 id="5-一个更大型的示例："><a href="#5-一个更大型的示例：" class="headerlink" title="5. 一个更大型的示例："></a>5. 一个更大型的示例：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#!/usr/bin/env python</span><br><span class="line"># -*- coding: utf-8 -*-</span><br><span class="line">from PyQt4.QtCore import Qt</span><br><span class="line">from PyQt4.QtGui import QCompleter, QComboBox, QSortFilterProxyModel, QDialog</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class ExtendedComboBox(QComboBox):</span><br><span class="line">    def __init__(self, parent=None):</span><br><span class="line">        super(ExtendedComboBox, self).__init__(parent)</span><br><span class="line"></span><br><span class="line">        self.setFocusPolicy(Qt.StrongFocus)</span><br><span class="line">        self.setEditable(True)</span><br><span class="line"></span><br><span class="line">        self.filter_model = QSortFilterProxyModel(self)</span><br><span class="line">        self.filter_model.setFilterCaseSensitivity(Qt.CaseInsensitive)</span><br><span class="line">        self.filter_model.setSourceModel(self.model())</span><br><span class="line"></span><br><span class="line">        self.completer = QCompleter(self.filter_model, self)</span><br><span class="line">        self.completer.setCompletionMode(QCompleter.UnfilteredPopupCompletion)</span><br><span class="line">        self.setCompleter(self.completer)</span><br><span class="line"></span><br><span class="line">        self.lineEdit().textEdited[unicode].connect(</span><br><span class="line">            self.filter_model.setFilterFixedString)</span><br><span class="line">        self.completer.activated.connect(self.on_completer_activated)</span><br><span class="line"></span><br><span class="line">    def on_completer_activated(self, text):</span><br><span class="line">        if text:</span><br><span class="line">            index = self.findText(text)</span><br><span class="line">            self.setCurrentIndex(index)</span><br><span class="line"></span><br><span class="line">    def setModel(self, model):</span><br><span class="line">        super(ExtendedComboBox, self).setModel(model)</span><br><span class="line">        self.filter_model.setSourceModel(model)</span><br><span class="line">        self.completer.setModel(self.filter_model)</span><br><span class="line"></span><br><span class="line">    def setModelColumn(self, column):</span><br><span class="line">        self.completer.setCompletionColumn(column)</span><br><span class="line">        self.filter_model.setFilterKeyColumn(column)</span><br><span class="line">        super(ExtendedComboBox, self).setModelColumn(column)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    import sys</span><br><span class="line">    from PyQt4.QtGui import QApplication, QStandardItemModel</span><br><span class="line">    from PyQt4.QtGui import QStandardItem, QVBoxLayout</span><br><span class="line"></span><br><span class="line">    app = QApplication(sys.argv)</span><br><span class="line">    win = QDialog()</span><br><span class="line">    win.setMinimumSize(400, 400)</span><br><span class="line">    combo = ExtendedComboBox()</span><br><span class="line">    layout = QVBoxLayout()</span><br><span class="line">    win.setLayout(layout)</span><br><span class="line">    model = QStandardItemModel(combo)</span><br><span class="line">    for i, word in enumerate([&apos;hola&apos;, &apos;adios&apos;, &apos;hello&apos;, &apos;good bye&apos;]):</span><br><span class="line">        item = QStandardItem(word)</span><br><span class="line">        model.setItem(i, 0, item)</span><br><span class="line"></span><br><span class="line">    combo.setModel(model)</span><br><span class="line">    layout.addWidget(combo)</span><br><span class="line">    win.show()</span><br><span class="line"></span><br><span class="line">    sys.exit(app.exec_())</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/06/01/QComboBox-with-StardardItemModel-QTimer-Issue/" data-id="cjrjycrq200fvbatithuwt5zz" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PyQt/">PyQt</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/07/01/Expect-PExpect-WPExpect/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Pexpect and Interactive Interface with Linux
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/06/01/Recommend-CamingoCod-as-a-coding-font/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">推荐一个编程字体： Camingocode</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Innards/">内核</a><span class="category-list-count">48</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">函数编程</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dynamic-Programming/">动态编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Fun/">好玩</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">安全</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">安卓</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Recommend/">推荐</a><span class="category-list-count">57</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">数学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Solutions/">方案</a><span class="category-list-count">64</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">机器学习</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">程序语言</a><span class="category-list-count">71</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Notes/">笔记</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algo/">算法</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Automation/">自动化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerVision/">计算机视觉</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Review/">评测</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">面试</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">49</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Meng Jue (M)<br>
+    </div>
+  </div>
+</footer>
+
+    
+
+
+
+<script src="/js/jquery-2.2.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Tag: Python | Make Fun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Make fun with the world">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Make Fun">
+<meta property="og:url" content="http://m.imf.cc/tags/Python/page/4/index.html">
+<meta property="og:site_name" content="Make Fun">
+<meta property="og:description" content="Make fun with the world">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Make Fun">
+<meta name="twitter:description" content="Make fun with the world">
+  
+  
+  <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/open-fonts/css/open-sans.css">
+  <link rel="stylesheet" href="/open-fonts/css/share-tech-mono.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-main" class="header-inner">
+    <div class="outer">
+      <a href="/" id="logo"><i class="logo"></i><span class="site-title">Make Fun</span></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div class="profile" id="profile-nav">
+          <a id="profile-anchor" href="javascript:;"><img class="avatar" src="/css/images/avatar.png"><i class="fa fa-caret-down"></i></a>
+        </div>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </div>
+    </div>
+  </div>
+  <div id="main-nav-mobile" class="header-sub header-inner">
+    <table class="menu outer">
+      <tr>
+      
+        <td><a class="main-nav-link" href="/">Home</a></td>
+      
+        <td><a class="main-nav-link" href="/archives">Archives</a></td>
+      
+        <td><a class="main-nav-link" href="/about">About</a></td>
+      
+      <td>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://m.imf.cc"></form>
+      </td>
+      </tr>
+    </table>
+  </div>
+  
+</header>
+    <div class="outer">
+      <aside id="profile">
+  <div class="inner profile-inner">
+  	<div class="base-info profile-block">
+		  <img id="avatar" src="/css/images/avatar.png">
+      <h2 id="name">Meng Jue (M)</h2>
+      <h3 id="title">Strict Developer &amp; Funny Player</h3>
+      <span id="location"><i class="fa fa-map-marker"></i>Shanghai, China</span>
+      <a id="follow" href="https://github.com/MengjueM">关注我</a>
+  	</div>
+    <div class="article-info profile-block">
+      <div class="article-info-block">
+        319
+        <span>文章</span>
+      </div>
+      <div class="article-info-block">
+        236
+        <span>标签</span>
+      </div>
+    </div>
+    <div class="contact-info profile-block">
+      <table class="contact-list">
+        <tr>
+        
+          <td><a href="http://github.com/MengjueM" title="github"><i class="fa fa-github"></i></a></td>
+        
+          <td><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></td>
+        
+          <td><a href="#" title="facebook"><i class="fa fa-facebook"></i></a></td>
+        
+          <td><a href="#" title="dribbble"><i class="fa fa-dribbble"></i></a></td>
+        
+          <td><a href="/atom.xml" title="rss"><i class="fa fa-rss"></i></a></td>
+        
+        </tr>
+      </table>
+    </div>
+  </div>
+</aside>
+      <section id="main">
+  
+  
+    
+    
+      
+        <div class="archive-year-wrap">
+          <i class="fa fa-calendar"></i>
+          <a href="/archives/2015" class="archive-year">2015</a>
+        </div>
+    
+    <article id="post-tqdm-a-progress-bar-implementation-in-python" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/24/tqdm-a-progress-bar-implementation-in-python/">tqdm: 一个命令行进度条的python实现</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/12/24/tqdm-a-progress-bar-implementation-in-python/">
+    <time datetime="2015-12-24T04:02:49.000Z" itemprop="datePublished">2015-12-24</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Solutions/">方案</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>tqdm（阿拉伯语），意思是进度（progress）的意思，由<a href="https://github.com/casperdcl" target="_blank" rel="noopener">Casper da Costa-Luis</a>开发。</p>
+<p><img src="https://raw.githubusercontent.com/tqdm/tqdm/master/logo.png"></p>
+<p>特点：</p>
+<ul>
+<li>工作于任何平台（*nix/windows）</li>
+<li>低overhead</li>
+<li>没有其他库依赖</li>
+</ul>
+<p>项目地址：</p>
+<p><a href="https://github.com/tqdm/tqdm" target="_blank" rel="noopener">https://github.com/tqdm/tqdm</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/12/24/tqdm-a-progress-bar-implementation-in-python/" data-id="cjrjycryf00xnbati4e0dvg4i" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Progress-Bar/">Progress Bar</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    
+    <article id="post-A-Funny-Music-Synchronizer" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/21/A-Funny-Music-Synchronizer/">A Funny Music Synchronizer</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/12/21/A-Funny-Music-Synchronizer/">
+    <time datetime="2015-12-21T08:31:52.000Z" itemprop="datePublished">2015-12-21</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Fun/">好玩</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>项目介绍：</p>
+<p>一个好玩的可以在所有的电脑同步音频的cs架构的实现。</p>
+<blockquote>
+<p>Want to sync up your music on multiple computers? This accomplishes exactly that - using only a simple Python server and a browser. Simply run the Python server, and open up a browser on each computer you want to sync up - that’s it!</p>
+</blockquote>
+<p>项目地址：<a href="https://github.com/schollz/musicsaur" target="_blank" rel="noopener">https://github.com/schollz/musicsaur</a></p>
+<p>技术栈：</p>
+<ul>
+<li>tornado (backend)</li>
+<li>jinja (frontend)</li>
+<li>howler.js (service)</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/12/21/A-Funny-Music-Synchronizer/" data-id="cjrjycrhw0004batiq72qbjgt" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    
+    <article id="post-Weighted-Random-Distribution" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/15/Weighted-Random-Distribution/">随机权重分布的Python实现</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/05/15/Weighted-Random-Distribution/">
+    <time datetime="2015-05-15T08:58:00.000Z" itemprop="datePublished">2015-05-15</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Algo/">算法</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文：<a href="http://www.electricmonk.nl/log/2009/12/23/weighted-random-distribution/" target="_blank" rel="noopener">http://www.electricmonk.nl/log/2009/12/23/weighted-random-distribution/</a></p>
+<p>Randomly selecting elements from a set of items is easy. Just generate a random number between 0 and the length of the set minus one, and use that as an index in the set (if it is an array) to get a random entry. The chance that an entry is picked is the same for each entry in the set. This is called even distribution or uniform distribution.</p>
+<p>But what if we do not want each entry to appear as much as every other? Suppose we’re creating a question-answer game, and we want the questions the user got wrong previously to appear more often than the question he or she got right? This is called a Weighted Random Distribution, or sometimes Weighted Random Choice, and there are multiple methods of implementing such as random picker.</p>
+<p>This article explains these various methods of implementing Weighted Random Distribution along with their pros and cons. We use Python as our language of choice, because it has an easy to read syntax, and provides many useful tools which would take many more lines of code in most other languages. Along the way all Python “tricks” will be explained.</p>
+<p>分为几种实现：</p>
+<h3 id="Expanding"><a href="#Expanding" class="headerlink" title="Expanding"></a>Expanding</h3><pre><code>#!/usr/bin/python
+
+import random
+
+weights = {
+        &apos;A&apos;: 2,
+        &apos;B&apos;: 4,
+        &apos;C&apos;: 3,
+        &apos;D&apos;: 1
+}
+
+dist = []
+for x in weights.keys():
+        dist += weights[x] * x
+
+results = {}
+for i in range(100000):
+        wRndChoice = random.choice(dist)
+        results[wRndChoice] = results.get(wRndChoice, 0) + 1
+
+print results
+</code></pre><h3 id="In-Place-Unsorted"><a href="#In-Place-Unsorted" class="headerlink" title="In-Place(Unsorted)"></a>In-Place(Unsorted)</h3><pre><code>#!/usr/bin/python
+
+import random
+
+weights = {
+        &apos;A&apos;: 2,
+        &apos;B&apos;: 4,
+        &apos;C&apos;: 3,
+        &apos;D&apos;: 1
+}
+
+wTotal = sum(weights.values())
+
+results = {}
+for i in range(100000):
+        wRndNr = random.randint(0, wTotal - 1)
+        s = 0
+        for w in weights.items():
+                s += w[1]
+                if s &gt; wRndNr:
+                        break;
+        results[w[0]] = results.get(w[0], 0) + 1
+
+print results
+</code></pre><h3 id="In-Place-Sorted"><a href="#In-Place-Sorted" class="headerlink" title="In-Place(Sorted)"></a>In-Place(Sorted)</h3><pre><code>results = {}
+for i in range(100000):
+        wRndNr = random.randint(0, wTotal - 1)
+        s = wTotal
+        for i in xrange(len(sWeights) - 1, -1, -1):
+                wRndChoice = sWeights[i]
+                s -= wRndChoice[1]
+                if s &lt;= wRndNr:
+                        break
+        results[wRndChoice[0]] = results.get(wRndChoice[0], 0) + 1
+print results
+</code></pre><h3 id="Pre-calculation"><a href="#Pre-calculation" class="headerlink" title="Pre-calculation"></a>Pre-calculation</h3><pre><code>wTotal = 0
+sWeights = []
+for w in weights.items():
+    wTotal += w[1]
+    sWeights.append( (wTotal, w[0]) )
+    results = {}
+for i in range(100000):
+    wRndNr = random.randint(0, wTotal - 1)
+    wRndChoice = sWeights[bisect.bisect(sWeights, (wRndNr, None))]
+
+    results[wRndChoice[1]] = results.get(wRndChoice[1], 0) + 1
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/05/15/Weighted-Random-Distribution/" data-id="cjrjycrsr00kpbatiltbhai8k" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    
+    <article id="post-Recommend-A-Blog-Electric-Monk" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/15/Recommend-A-Blog-Electric-Monk/">推荐一个博客：www.electricmonk.nl</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/05/15/Recommend-A-Blog-Electric-Monk/">
+    <time datetime="2015-05-15T08:45:00.000Z" itemprop="datePublished">2015-05-15</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Recommend/">推荐</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>博客站：<a href="http://www.electricmonk.nl/log" target="_blank" rel="noopener">http://www.electricmonk.nl/log</a></li>
+<li>博主：<strong>Ferry Boender</strong></li>
+<li>博客内容：Python，算法</li>
+<li>好文章：<a href="http://www.electricmonk.nl/log/2009/12/23/weighted-random-distribution/" target="_blank" rel="noopener">http://www.electricmonk.nl/log/2009/12/23/weighted-random-distribution/</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/05/15/Recommend-A-Blog-Electric-Monk/" data-id="cjrjycrq600g2batisjz7st0c" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    
+    <article id="post-Refer-A-Good-Python-Blog" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/06/Refer-A-Good-Python-Blog/">推荐一个很好的Python的博客</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/05/06/Refer-A-Good-Python-Blog/">
+    <time datetime="2015-05-06T09:48:37.000Z" itemprop="datePublished">2015-05-06</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Recommend/">推荐</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>网址为：<a href="http://eli.thegreenplace.net/" target="_blank" rel="noopener">http://eli.thegreenplace.net/</a></p>
+<p>所有的Python的文章：<a href="http://eli.thegreenplace.net/tag/python" target="_blank" rel="noopener">http://eli.thegreenplace.net/tag/python</a></p>
+<p>Python Internal: <a href="http://eli.thegreenplace.net/tag/python-internals" target="_blank" rel="noopener">http://eli.thegreenplace.net/tag/python-internals</a></p>
+<p>博主简介：</p>
+<ul>
+<li>名字： Eli Bendersky</li>
+<li>Python Core Developer</li>
+<li>LLVM &amp; CLang committer</li>
+<li>Github: <a href="https://github.com/eliben" target="_blank" rel="noopener">https://github.com/eliben</a></li>
+<li>写作时间：10年</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/05/06/Refer-A-Good-Python-Blog/" data-id="cjrjycrqd00ggbatik4mscva0" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    
+    <article id="post-Good-Tornado-Based-Web-Application" class="article article-type-post" itemscope="" itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/10/Good-Tornado-Based-Web-Application/">Tornado Basic and Demo</a>
+    </h1>
+  
+
+        <div class="article-meta">
+          <div class="article-date">
+  <i class="fa fa-calendar"></i>
+  <a href="/2015/04/10/Good-Tornado-Based-Web-Application/">
+    <time datetime="2015-04-10T08:31:37.000Z" itemprop="datePublished">2015-04-10</time>
+  </a>
+</div>
+          
+  <div class="article-category">
+  	<i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/Coding/">程序语言</a>
+  </div>
+
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Long-Polling-with-tornado"><a href="#Long-Polling-with-tornado" class="headerlink" title="Long Polling with tornado"></a>Long Polling with tornado</h3><p>Tornado的异步架构可以对HTTP的long polling得心应手，所谓的long polling是一种技术用来<br>处理实时提醒或者构建高性能的多人聊天室。早期实现这种技术是使用在客户端定时更新的方法，<br>但是带来的挑战是“实时更新”的“频率”必须足够的快，但是太快的客户端请求又会使服务器不堪<br>重负。</p>
+<p>所以现在使用一种叫做“Server Push”的技术，要求在“网络应用”端在有状态（state）更新（<br>update）时，实时推送给客户端。在现在的常见的server端push技术中，需要跟客户端的浏览器<br>有很好的兼容，所以最流行的技术使用的是，通过客户端发起的连接去模拟“Server Push”。这类<br>有客户端发起的用来server push的连接，叫做“Long Polling”或者“Comet Request”。</p>
+<p>Long Polling技术是客户端发起一个连接，并保持在open状态，然后客户端等待服务器端“推送”<br>状态更新。当服务器端推送更新完成后，将会关闭该连接。然后，客户端打开另外一个新的连接，<br>等待服务器端的另外一次推送。</p>
+<h3 id="Benefits-of-Long-Polling"><a href="#Benefits-of-Long-Polling" class="headerlink" title="Benefits of Long Polling"></a>Benefits of Long Polling</h3><ul>
+<li>减少服务器负载</li>
+<li>服务端只在客户端发起连接后，推送状态更新</li>
+<li>浏览器只需要支持AJAX</li>
+<li>相比其他的推送技术，“Long Polling”得到更广泛的应用</li>
+<li>参考实现：<ul>
+<li>Google Doc使用Long Polling实现实时文档编辑与协作</li>
+<li>Twitter使用long polling去更新用户的提醒</li>
+<li>Facebook使用long polling实现聊天</li>
+</ul>
+</li>
+</ul>
+<h3 id="Tornado最佳代码结构："><a href="#Tornado最佳代码结构：" class="headerlink" title="Tornado最佳代码结构："></a>Tornado最佳代码结构：</h3><ul>
+<li><a href="https://github.com/bueda/tornado-boilerplate" target="_blank" rel="noopener">https://github.com/bueda/tornado-boilerplate</a></li>
+<li><a href="https://github.com/hkage/tornado-project-skeleton" target="_blank" rel="noopener">https://github.com/hkage/tornado-project-skeleton</a></li>
+<li><a href="https://github.com/iambibhas/tornado-boilterplate" target="_blank" rel="noopener">https://github.com/iambibhas/tornado-boilterplate</a></li>
+<li><a href="https://github.com/decultured/Tornado-Base-Project" target="_blank" rel="noopener">https://github.com/decultured/Tornado-Base-Project</a></li>
+</ul>
+<h3 id="Tornado示例站点"><a href="#Tornado示例站点" class="headerlink" title="Tornado示例站点"></a>Tornado示例站点</h3><ol>
+<li><a href="https://github.com/ajdavis/motor-blog" target="_blank" rel="noopener">https://github.com/ajdavis/motor-blog</a></li>
+<li><a href="https://github.com/viewfinderco/viewfinder/" target="_blank" rel="noopener">https://github.com/viewfinderco/viewfinder/</a></li>
+<li><a href="https://github.com/ipython/ipython/tree/master/IPython/html" target="_blank" rel="noopener">https://github.com/ipython/ipython/tree/master/IPython/html</a></li>
+<li><a href="https://github.com/cdkr/tornado-cantas" target="_blank" rel="noopener">https://github.com/cdkr/tornado-cantas</a></li>
+<li><a href="https://github.com/nellessen/tornado-shortener" target="_blank" rel="noopener">https://github.com/nellessen/tornado-shortener</a></li>
+<li><a href="https://github.com/livid/v2ex" target="_blank" rel="noopener">https://github.com/livid/v2ex</a></li>
+<li><a href="https://github.com/rande/python-element" target="_blank" rel="noopener">https://github.com/rande/python-element</a></li>
+<li><a href="http://thomas.rabaix.net/under-the-hood" target="_blank" rel="noopener">http://thomas.rabaix.net/under-the-hood</a></li>
+<li><a href="https://github.com/abdelouahabb/essog" target="_blank" rel="noopener">https://github.com/abdelouahabb/essog</a></li>
+<li><a href="https://github.com/mitotic/graphterm" target="_blank" rel="noopener">https://github.com/mitotic/graphterm</a></li>
+<li><a href="https://github.com/peterbe/worklog" target="_blank" rel="noopener">https://github.com/peterbe/worklog</a></li>
+<li><a href="https://github.com/peterbe/toocool" target="_blank" rel="noopener">https://github.com/peterbe/toocool</a></li>
+<li><a href="https://github.com/martinrusev/amon" target="_blank" rel="noopener">https://github.com/martinrusev/amon</a></li>
+<li><a href="https://github.com/tornadoweb/tornado" target="_blank" rel="noopener">https://github.com/tornadoweb/tornado</a></li>
+<li><a href="https://github.com/peterbe/tornado_gists" target="_blank" rel="noopener">https://github.com/peterbe/tornado_gists</a></li>
+<li><a href="https://github.com/bgolub/tornado-blog" target="_blank" rel="noopener">https://github.com/bgolub/tornado-blog</a></li>
+<li><a href="https://github.com/peterbe/tiler" target="_blank" rel="noopener">https://github.com/peterbe/tiler</a></li>
+<li><a href="https://bitbucket.org/black_rez/lola21/" target="_blank" rel="noopener">https://bitbucket.org/black_rez/lola21/</a></li>
+<li><a href="https://github.com/finiteloop/socialcookbook" target="_blank" rel="noopener">https://github.com/finiteloop/socialcookbook</a></li>
+<li><a href="https://github.com/familonet/" target="_blank" rel="noopener">https://github.com/familonet/</a></li>
+<li><a href="https://github.com/GovLab/OpenData500" target="_blank" rel="noopener">https://github.com/GovLab/OpenData500</a></li>
+</ol>
+<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ul>
+<li><a href="http://stackoverflow.com/questions/15415634/whats-the-best-structure-for-a-large-scale-python-tornado-project" target="_blank" rel="noopener">http://stackoverflow.com/questions/15415634/whats-the-best-structure-for-a-large-scale-python-tornado-project</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://m.imf.cc/2015/04/10/Good-Tornado-Based-Web-Application/" data-id="cjrjycrlx007sbati1xli2qcn" class="article-share-link">分享到</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Tornado/">Tornado</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/tags/Python/page/3/">&laquo; 上一页</a><a class="page-number" href="/tags/Python/">1</a><a class="page-number" href="/tags/Python/page/2/">2</a><a class="page-number" href="/tags/Python/page/3/">3</a><span class="page-number current">4</span>
+    </nav>
+  
+</section>
+      
+        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTML5/">HTML5</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">Security</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Innards/">内核</a><span class="category-list-count">48</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Functional-Programming/">函数编程</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Dynamic-Programming/">动态编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Fun/">好玩</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Security/">安全</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">安卓</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Recommend/">推荐</a><span class="category-list-count">57</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Math/">数学</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Solutions/">方案</a><span class="category-list-count">64</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">机器学习</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Testing/">测试</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Coding/">程序语言</a><span class="category-list-count">71</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Notes/">笔记</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algo/">算法</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Automation/">自动化</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ComputerVision/">计算机视觉</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Review/">评测</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Interview/">面试</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">49</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">32</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">23</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">十二月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">四月 2015</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">二月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+  <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+      
+    </div>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Meng Jue (M)<br>
+    </div>
+  </div>
+</footer>
+
+    
+
+
+
+<script src="/js/jquery-2.2.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
